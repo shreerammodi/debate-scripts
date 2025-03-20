@@ -1,123 +1,32 @@
 Sub Zap()
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Tag"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = True
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
+    Dim styles As Variant, s As Variant
 
     Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Cite"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = True
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
+    Application.DisplayAlerts = False
 
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Pocket"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = True
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
+    ' Styles that should be preserved in the read doc
+    styles = Array("Pocket", "Hat", "Block", "Tag", "Cite", "Analytic", "Undertag")
 
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Hat"
-        With .Replacement
-            .Text = "^&"
+    ' First pass: turn on highlights for styles
+    For Each s In styles
+        With ActiveDocument.Content.Find
             .ClearFormatting
-            .Highlight = True
+            .Style = s
+            With .Replacement
+                .Text = "^&"
+                .ClearFormatting
+                .Highlight = True
+            End With
+            .Forward = True
+            .Wrap = wdFindContinue
+            .Format = True
+            .MatchWildcards = True
+            .Execute Replace:=wdReplaceAll
         End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
+    Next s
 
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Block"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = True
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
-
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Analytic"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = True
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
-
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Undertag"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = True
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
-
+    
+    ' Second pass: Delete anything that isn't highlighted
     Selection.Find.ClearFormatting
     Selection.Find.Highlight = False
     Selection.Find.Replacement.ClearFormatting
@@ -135,127 +44,23 @@ Sub Zap()
     End With
     Selection.Find.Execute Replace:=wdReplaceAll
 
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting    ' If ActiveDocument is not passed, use ActiveDocument
-        If ActiveDocument Is Nothing Then
-            Set ActiveDocument = ActiveDocument
-        End If
-        .Style = "Tag"
-        With .Replacement
-            .Text = "^&"
+    ' Third pass: Remove highlighting from styles
+    For Each s In styles
+        With ActiveDocument.Content.Find
             .ClearFormatting
-            .Highlight = False
+            .Style = s
+            With .Replacement
+                .Text = "^&"
+                .ClearFormatting
+                .Highlight = False
+            End With
+            .Forward = True
+            .Wrap = wdFindContinue
+            .Format = True
+            .MatchWildcards = True
+            .Execute Replace:=wdReplaceAll
         End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
-
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Cite"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = False
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
-
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Block"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = False
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
-
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Pocket"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = False
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
-
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Hat"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = False
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
-
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Analytic"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = False
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
-
-    Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Undertag"
-        With .Replacement
-            .Text = "^&"
-            .ClearFormatting
-            .Highlight = False
-        End With
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = True
-        .MatchWildcards = True
-        .Execute Replace:=wdReplaceAll
-    End With
+    Next s
 
     Selection.HomeKey Unit:=wdStory
     Selection.Find.ClearFormatting
@@ -285,6 +90,8 @@ Sub Zap()
         Selection.Find.Execute
     Wend
 
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
 End Sub
 
 Sub CondenseZap()
@@ -326,11 +133,11 @@ Sub CondenseZap()
     End Sub
 
 Sub CreateZappedDoc()
-    Dim newDoc As Document
     Dim originalDoc As Document
     Dim originalFilePath As String
     Dim originalFolderPath As String
     Dim savePath As String
+    Dim zappedDoc As Document
 
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
@@ -338,10 +145,10 @@ Sub CreateZappedDoc()
     ActiveDocument.Save
     Set originalDoc = ActiveDocument
 
-    Set zappedDoc = Documents.Add(ActiveDocument.FullName)
+    Set ZappedDoc = Documents.Add(ActiveDocument.FullName)
 
-    Call Zap(newDoc)
-    Call CondenseZap(newDoc)
+    Call Zap()
+    Call CondenseZap()
 
     ' Get the Downloads folder path
     downloadsDirPath = GetDownloadsDir()
