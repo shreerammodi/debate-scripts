@@ -1,18 +1,3 @@
-Function GetDownloadsFolder() As String
-    Dim downloadsPath As String
-
-    #If Mac Then
-        username = Environ("USER")
-        downloadsPath = "/Users/" & username & "/Downloads/"
-    #Else
-        Dim WshShell As Object
-        Set WshShell = CreateObject("WScript.Shell")
-        downloadsPath = WshShell.ExpandEnvironmentStrings("%USERPROFILE%") & "\Downloads\"
-    #End If
-
-    GetDownloadsFolder = downloadsPath
-End Function
-
 Sub DeleteAnalytics()
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
@@ -53,7 +38,7 @@ Sub CreateSendDoc()
     Call DeleteAnalytics()
 
     ' Get the Downloads folder path
-    downloadsDirPath = GetDownloadsFolder()
+    downloadsDirPath = GetDownloadsDir()
     savePath = downloadsDirPath & "[S] " & originalDoc.Name
     ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
     sendDoc.Close
