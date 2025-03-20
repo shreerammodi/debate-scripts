@@ -335,33 +335,18 @@ Sub CreateZappedDoc()
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
 
-    ' Save the original document
     ActiveDocument.Save
-
-    ' Assign the original document to a variable
     Set originalDoc = ActiveDocument
 
-    ' Get the folder path and file path
-    originalFolderPath = Left(originalDoc.FullName, InStrRev(originalDoc.FullName, Application.PathSeparator))
-    originalFilePath = originalDoc.FullName
+    Set zappedDoc = Documents.Add(ActiveDocument.FullName)
 
-    ' Define save path for the modified document
-    savePath = originalFolderPath & "[R] " & originalDoc.Name
-
-    ' Save a copy of the document
-    originalDoc.SaveAs2 Filename:=savePath, FileFormat:=wdFormatXMLDocument
-    Set newDoc = Documents.Open(savePath)
-
-    ' Call Zap and CondenseZap on the new document
     Call Zap(newDoc)
     Call CondenseZap(newDoc)
 
-    ' Save and close the modified document
-    newDoc.Save
-    newDoc.Close
-
-    ' Reopen the original document
-    Documents.Open originalFilePath
+    ' Get the Downloads folder path
+    downloadsDirPath = GetDownloadsDir()
+    savePath = downloadsDirPath & "[R] " & originalDoc.Name
+    ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
 
     Application.ScreenUpdating = True
     Application.DisplayAlerts = True
