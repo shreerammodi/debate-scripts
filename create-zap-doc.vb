@@ -1,6 +1,7 @@
 Sub Zap()
     Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise With ActiveDocument.Content.Find
+    Options.DefaultHighlightColorIndex = wdTurquoise
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Tag"
         With .Replacement
