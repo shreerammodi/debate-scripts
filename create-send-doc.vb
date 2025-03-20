@@ -24,11 +24,10 @@ Sub DeleteAnalytics()
 End Sub
 
 Sub CreateSendDoc()
-    Dim newDoc As Document
-    Dim savePath As String
     Dim downloadsDirPath As String
-    Dim sendDoc As Document
     Dim originalDoc As Document
+    Dim savePath As String
+    Dim sendDoc As Document
 
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False

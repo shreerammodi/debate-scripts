@@ -325,11 +325,11 @@ Sub CondenseZap()
     End Sub
 
 Sub CreateZappedDoc()
-    Dim originalDoc As Document
     Dim newDoc As Document
-    Dim savePath As String
-    Dim originalFolderPath As String
+    Dim originalDoc As Document
     Dim originalFilePath As String
+    Dim originalFolderPath As String
+    Dim savePath As String
 
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
