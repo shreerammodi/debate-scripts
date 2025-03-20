@@ -45,4 +45,7 @@ Sub CreateSendDoc()
     savePath = downloadsDirPath & "[S] " & originalDoc.Name
     ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
     sendDoc.Close
+
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
 End Sub
