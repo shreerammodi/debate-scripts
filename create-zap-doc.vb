@@ -27,22 +27,17 @@ Sub Zap()
 
     
     ' Second pass: Delete anything that isn't highlighted
-    Selection.Find.ClearFormatting
-    Selection.Find.Highlight = False
-    Selection.Find.Replacement.ClearFormatting
-    With Selection.Find
+    With ActiveDocument.Content.Find
+        .ClearFormatting
+        .Highlight = False
+        .Replacement.ClearFormatting
         .Text = ""
         .Replacement.Text = "^p"
         .Forward = True
         .Wrap = wdFindContinue
         .Format = True
-        .MatchCase = False
-        .MatchWholeWord = False
-        .MatchWildcards = False
-        .MatchSoundsLike = False
-        .MatchAllWordForms = False
+        .Execute Replace:=wdReplaceAll
     End With
-    Selection.Find.Execute Replace:=wdReplaceAll
 
     ' Third pass: Remove highlighting from styles
     For Each s In styles
@@ -62,34 +57,6 @@ Sub Zap()
         End With
     Next s
 
-    Selection.HomeKey Unit:=wdStory
-    Selection.Find.ClearFormatting
-    Selection.Find.Replacement.ClearFormatting
-    With Selection.Find
-        .Text = " ^p"
-        .Replacement.Text = "^p"
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Format = False
-        .MatchWholeWord = False
-        .MatchWildcards = False
-    End With
-    Selection.Find.Execute
-    While Selection.Find.Found
-        Selection.HomeKey Unit:=wdStory
-        Selection.Find.Execute Replace:=wdReplaceAll
-        Selection.Find.Execute
-    Wend
-
-    Selection.Find.Text = " ^l"
-    Selection.Find.Replacement.Text = "^l"
-    Selection.Find.Execute
-    While Selection.Find.Found
-        Selection.HomeKey Unit:=wdStory
-        Selection.Find.Execute Replace:=wdReplaceAll
-        Selection.Find.Execute
-    Wend
-
     Application.ScreenUpdating = True
     Application.DisplayAlerts = True
 End Sub
@@ -99,6 +66,7 @@ Sub CondenseZap()
     Dim rngStart As Range, rngEnd As Range
 
     Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
 
     ' Set the range to the entire document
     Set rngTemp = ActiveDocument.Content
@@ -127,10 +95,11 @@ Sub CondenseZap()
                 ' Reset the range
                 rngTemp.SetRange rngEnd.End, rngTemp.Document.Range.End
             Loop
-        End With
+    End With
 
-        Application.ScreenUpdating = True
-    End Sub
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
+End Sub
 
 Sub CreateZappedDoc()
     Dim originalDoc As Document
