@@ -1,12 +1,6 @@
-Sub Zap(Optional targetDoc As Document = Nothing)
-    ' If targetDoc is not passed, use ActiveDocument
-    If targetDoc Is Nothing Then
-        Set targetDoc = ActiveDocument
-    End If
-
+Sub Zap()
     Application.ScreenUpdating = False
-    Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    Options.DefaultHighlightColorIndex = wdTurquoise With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Tag"
         With .Replacement
@@ -23,7 +17,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Cite"
         With .Replacement
@@ -40,7 +34,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Pocket"
         With .Replacement
@@ -57,7 +51,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Hat"
         With .Replacement
@@ -74,7 +68,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Block"
         With .Replacement
@@ -91,7 +85,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Analytic"
         With .Replacement
@@ -108,7 +102,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Undertag"
         With .Replacement
@@ -142,10 +136,10 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
-        .ClearFormatting    ' If targetDoc is not passed, use ActiveDocument
-        If targetDoc Is Nothing Then
-            Set targetDoc = ActiveDocument
+    With ActiveDocument.Content.Find
+        .ClearFormatting    ' If ActiveDocument is not passed, use ActiveDocument
+        If ActiveDocument Is Nothing Then
+            Set ActiveDocument = ActiveDocument
         End If
         .Style = "Tag"
         With .Replacement
@@ -162,7 +156,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Cite"
         With .Replacement
@@ -179,7 +173,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Block"
         With .Replacement
@@ -196,7 +190,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Pocket"
         With .Replacement
@@ -213,7 +207,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Hat"
         With .Replacement
@@ -230,7 +224,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Analytic"
         With .Replacement
@@ -247,7 +241,7 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
     Application.ScreenUpdating = False
     Options.DefaultHighlightColorIndex = wdTurquoise
-    With targetDoc.Content.Find
+    With ActiveDocument.Content.Find
         .ClearFormatting
         .Style = "Undertag"
         With .Replacement
@@ -292,19 +286,14 @@ Sub Zap(Optional targetDoc As Document = Nothing)
 
 End Sub
 
-Sub CondenseZap(Optional targetDoc As Document = Nothing)
-    ' If targetDoc is not passed, use ActiveDocument
-    If targetDoc Is Nothing Then
-        Set targetDoc = ActiveDocument
-    End If
-
+Sub CondenseZap()
     Dim rngTemp As Range
     Dim rngStart As Range, rngEnd As Range
 
     Application.ScreenUpdating = False
 
     ' Set the range to the entire document
-    Set rngTemp = targetDoc.Content
+    Set rngTemp = ActiveDocument.Content
 
     With rngTemp.Find
         .ClearFormatting
@@ -375,6 +364,4 @@ Sub CreateZappedDoc()
 
     Application.ScreenUpdating = True
     Application.DisplayAlerts = True
-
-    MsgBox "Read version created and saved as " & savePath
 End Sub

@@ -30,6 +30,8 @@ Sub CreateSendDoc()
     Dim sendDoc As Document
     Dim originalDoc As Document
 
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
     set originalDoc = ActiveDocument
 
     Set sendDoc = Documents.Add(ActiveDocument.FullName)
