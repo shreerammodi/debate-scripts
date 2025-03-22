@@ -128,7 +128,7 @@ To add styles to your template:
    - Style based on: =Tag=
    - Style for following paragraph: =Normal=
 4. Aestheticize the style as you wish using the following options:
-   - Color, size, italics[3]
+   - Color, size, italics
 5. Check =Add to template=
 
 * Scripts
