@@ -124,8 +124,8 @@ To add styles to your template:
 2. Click =New Style=
 3. Use the following settings:
    - Name: either =Analytic= or =Undertag=
-   - Style type: =Paragraph=
-   - Style based on: =Tag=
+   - Style type: =Linked (paragraph and character)=
+   - Style based on: =Tag=, or if you wish, =Normal Text= for =Undertag=
    - Style for following paragraph: =Normal=
 4. Aestheticize the style as you wish using the following options:
    - Color, size, italics
