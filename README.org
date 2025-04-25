@@ -135,7 +135,7 @@ To add styles to your template:
 
 ** =Create Send Doc=
 
-Provides the ~create-send-doc~ macro,
+Provides the ~CreateSendDoc~ macro,
 which creates a document in your
 =Downloads= directory having the same
 title as the current document with =[S]= prepended.
