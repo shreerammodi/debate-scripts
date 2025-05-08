@@ -1,53 +1,57 @@
 Sub ConvertHighlightsToFills()
     Dim rng As Range
-    Dim char As Range
-    Dim highlightColor As Long
+    Dim ch As Range
+    Dim fillCol As Long
 
-    ' Check if there is a selection
-    If Selection.Type = wdSelectionIP Then
-        MsgBox "No text selected. Please select the text you want to modify.", vbExclamation
+    ' Make sure something is selected
+    If Selection Is Nothing Or Len(Selection.Range.Text) = 0 Then
+        MsgBox "Please select some text before running this macro.", vbExclamation
         Exit Sub
     End If
 
-    ' Set the range to the current selection
+    ' Turn off screen updating for speed
+    Application.ScreenUpdating = False
+
+    ' Work on the selected range
     Set rng = Selection.Range
 
     ' Loop through each character in the selection
-    For Each char In rng.Characters
-        ' Check if the character is highlighted and is not a paragraph mark
-        If char.HighlightColorIndex <> wdNoHighlight And char.Text <> vbCr Then
-            ' Get the RGB color based on the highlight index
-            highlightColor = MapHighlightToRGB(char.HighlightColorIndex)
-
-            ' Set the background color to the highlight color
-            char.Shading.BackgroundPatternColor = highlightColor
-
-            ' Remove the highlight
-            char.HighlightColorIndex = wdNoHighlight
+    For Each ch In rng.Characters
+        ' Only process highlighted text (skip paragraph marks)
+        If ch.HighlightColorIndex <> wdNoHighlight And ch.Text <> vbCr Then
+            ' Map the current highlight color to an RGB fill
+            fillCol = MapHighlightToRGB(ch.HighlightColorIndex)
+            ' Apply it as a shading background
+            ch.Shading.BackgroundPatternColor = fillCol
+            ' Clear the original highlight
+            ch.HighlightColorIndex = wdNoHighlight
         End If
-    Next char
+    Next ch
+
+    ' Restore updating
+    Application.ScreenUpdating = True
 
     ' Clean up
+    Set ch = Nothing
     Set rng = Nothing
-    Set char = Nothing
 End Sub
 
-Function MapHighlightToRGB(highlightIndex As WdColorIndex) As Long
+Private Function MapHighlightToRGB(highlightIndex As WdColorIndex) As Long
     Select Case highlightIndex
-        Case wdYellow: MapHighlightToRGB = RGB(255, 255, 0)
+        Case wdYellow:      MapHighlightToRGB = RGB(255, 255, 0)
         Case wdBrightGreen: MapHighlightToRGB = RGB(0, 255, 0)
-        Case wdTurquoise: MapHighlightToRGB = RGB(0, 255, 255)
-        Case wdPink: MapHighlightToRGB = RGB(255, 0, 255)
-        Case wdBlue: MapHighlightToRGB = RGB(0, 0, 255)
-        Case wdRed: MapHighlightToRGB = RGB(255, 0, 0)
-        Case wdDarkBlue: MapHighlightToRGB = RGB(0, 0, 139)
-        Case wdTeal: MapHighlightToRGB = RGB(0, 128, 128)
-        Case wdGreen: MapHighlightToRGB = RGB(0, 128, 0)
-        Case wdViolet: MapHighlightToRGB = RGB(238, 130, 238)
-        Case wdDarkRed: MapHighlightToRGB = RGB(139, 0, 0)
-        Case wdDarkYellow: MapHighlightToRGB = RGB(128, 128, 0)
-        Case wdGray25: MapHighlightToRGB = RGB(210, 210, 210)
-        Case wdGray50: MapHighlightToRGB = RGB(128, 128, 128)
-        Case Else: MapHighlightToRGB = RGB(255, 255, 255) ' Default to white for unknown colors
+        Case wdTurquoise:   MapHighlightToRGB = RGB(0, 255, 255)
+        Case wdPink:        MapHighlightToRGB = RGB(255, 0, 255)
+        Case wdBlue:        MapHighlightToRGB = RGB(0, 0, 255)
+        Case wdRed:         MapHighlightToRGB = RGB(255, 0, 0)
+        Case wdDarkBlue:    MapHighlightToRGB = RGB(0, 0, 139)
+        Case wdTeal:        MapHighlightToRGB = RGB(0, 128, 128)
+        Case wdGreen:       MapHighlightToRGB = RGB(0, 128, 0)
+        Case wdViolet:      MapHighlightToRGB = RGB(238, 130, 238)
+        Case wdDarkRed:     MapHighlightToRGB = RGB(139, 0, 0)
+        Case wdDarkYellow:  MapHighlightToRGB = RGB(128, 128, 0)
+        Case wdGray25:      MapHighlightToRGB = RGB(210, 210, 210)
+        Case wdGray50:      MapHighlightToRGB = RGB(128, 128, 128)
+        Case Else:          MapHighlightToRGB = RGB(255, 255, 255)  ' Default to white
     End Select
 End Function
