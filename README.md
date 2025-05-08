@@ -93,7 +93,7 @@ To add styles to your template:
 3. Use the following settings:
    - Name: either `Analytic` or `Undertag`
    - Style type: `Linked (paragraph and character)`
-   - Style based on: `Tag`, or if you wish, `Normal Text` for `Undertag`
+   - Style based on: `Tag` for `Analytic` and `Normal Text` for `Undertag`
    - Style for following paragraph: `Normal`
 4. Aestheticize the style as you wish using the following options:
    - Color, size, italics
