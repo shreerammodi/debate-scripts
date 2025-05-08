@@ -1,26 +1,45 @@
 Sub ForReference()
-    Dim rng As Range
-    Dim char As Range
+    Dim selRange As Range
+    Dim procRange As Range
+    Dim selEnd   As Long
 
-    ' Exit if there is no selection or if the selection is empty
-    If Selection Is Nothing Or Selection.Range.Text = "" Then
-        MsgBox "Please select text to apply the highlight change.", vbExclamation
+    ' Make sure something is selected
+    If Selection.Type = wdNoSelection Or Len(Selection.Range.Text) = 0 Then
+        MsgBox "Please select some text before running this macro.", vbExclamation
         Exit Sub
     End If
 
-    ' Speed up the macro by disabling screen updates and other processes
+    ' Turn off screen updating for speed
     Application.ScreenUpdating = False
 
-    ' Set the range to the current selection
-    Set rng = Selection.Range
+    ' Grab your selection and remember its end
+    Set selRange = Selection.Range
+    selEnd = selRange.End
 
-    ' Loop through each word (or character range) within the selection
-    For Each char In rng.Characters
-        If char.HighlightColorIndex <> wdNoHighlight Then
-            char.HighlightColorIndex = wdGray25 ' Change to gray highlight
-        End If
-    Next char
+    ' Work on a copy so we don't lose the original boundaries
+    Set procRange = selRange.Duplicate
 
-    ' Restore screen updates
+    With procRange.Find
+        .ClearFormatting
+        .Text = ""                ' find formatting only
+        .Highlight = True         ' only existing highlights
+        .Format = True
+        .Forward = True
+        .Wrap = wdFindStop        ' do not go past procRange
+    End With
+
+    ' Loop through each found highlighted run
+    Do While procRange.Find.Execute
+        ' If we've passed the original selection, exit
+        If procRange.Start >= selEnd Then Exit Do
+
+            ' Recolor this run
+            procRange.HighlightColorIndex = wdGray25
+
+            ' Move past it
+            procRange.Collapse wdCollapseEnd
+        Loop
+
+    ' Restore updating
     Application.ScreenUpdating = True
 End Sub
