@@ -124,8 +124,8 @@ Sub CreateZappedDoc()
 
     Set ZappedDoc = Documents.Add(ActiveDocument.FullName)
 
-    Call Zap()
-    Call CondenseZap()
+    Call Zap
+    Call CondenseZap
 
     ' Get the Downloads folder path
     downloadsDirPath = GetDownloadsDir()

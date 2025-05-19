@@ -38,7 +38,7 @@ Sub CreateSendDoc()
     Set sendDoc = Documents.Add(ActiveDocument.FullName)
 
     ' Process the document to remove analytics content
-    Call DeleteAnalytics()
+    Call DeleteAnalytics
 
     ' Get the Downloads folder path
     downloadsDirPath = GetDownloadsDir()
