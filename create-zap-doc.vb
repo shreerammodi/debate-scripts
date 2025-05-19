@@ -13,15 +13,18 @@ Sub Zap()
         With ActiveDocument.Content.Find
             .ClearFormatting
             .Style = s
-            With .Replacement
-                .Text = "^&"
-                .ClearFormatting
-                .Highlight = True
-            End With
+            .Text = ""
             .Forward = True
             .Wrap = wdFindContinue
             .Format = True
             .MatchWildcards = True
+
+            With .Replacement
+                .ClearFormatting
+                .Text = "^&"
+                .Highlight = True
+            End With
+
             .Execute Replace:=wdReplaceAll
         End With
     Next s
@@ -31,12 +34,15 @@ Sub Zap()
     With ActiveDocument.Content.Find
         .ClearFormatting
         .Highlight = False
-        .Replacement.ClearFormatting
         .Text = ""
-        .Replacement.Text = "^p"
         .Forward = True
         .Wrap = wdFindContinue
         .Format = True
+
+        With .Replacement
+            .ClearFormatting
+            .Text = "^p"
+        End With
         .Execute Replace:=wdReplaceAll
     End With
 
@@ -45,15 +51,16 @@ Sub Zap()
         With ActiveDocument.Content.Find
             .ClearFormatting
             .Style = s
+            .Forward = True
+            .Wrap = wdFindContinue
+            .Format = True
+            .MatchWildcards = True
+
             With .Replacement
                 .Text = "^&"
                 .ClearFormatting
                 .Highlight = False
             End With
-            .Forward = True
-            .Wrap = wdFindContinue
-            .Format = True
-            .MatchWildcards = True
             .Execute Replace:=wdReplaceAll
         End With
     Next s
