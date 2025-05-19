@@ -69,44 +69,58 @@ Sub Zap()
     Application.DisplayAlerts = True
 End Sub
 
-Sub CondenseZap()
-    Dim rngTemp As Range
-    Dim rngStart As Range, rngEnd As Range
+Public Sub CondenseCards()
+    Dim p As Paragraph
+    Dim rng As Range
 
     Application.ScreenUpdating = False
-    Application.DisplayAlerts = False
+    Application.DisplayAlerts  = False
 
-    ' Set the range to the entire document
-    Set rngTemp = ActiveDocument.Content
+    ' Go through all paragraphs
+    For Each p In ActiveDocument.Paragraphs
+        ' Only process Tag paragraphs
+        if p.OutlineLevel = wdOutlineLevel4 Then
+            ' Use Verbatim function to select the card text under the Tag
+            Set CondenseRange = Paperless.SelectCardTextRange(p)
 
-    With rngTemp.Find
+            ' Drop trailing paragraph mark if present
+            If CondenseRange.Characters.Last.Text = Chr(13) Then
+                CondenseRange.MoveEnd wdCharacter, -1
+            End If
+
+            ' Skip cards with nothing but the Tag itself
+            If CondenseRange.Paragraphs.Count > 1 Then
+                ' Replace all paragraph marks in the card with a space
+                With CondenseRange.Find
+                    .ClearFormatting
+                    .Text = "^p"
+                    With .Replacement
+                        .ClearFormatting
+                        .Text = " "
+                        .Highlight = False
+                        .Style = ActiveDocument.Styles("Normal")
+                    End With
+                    .Wrap = wdFindStop
+                    .Format = True
+                    .Execute Replace:=wdReplaceAll
+                End With
+            End If
+        End If
+    Next p
+
+    ' Remove duplicate spaces
+    With ActiveDocument.Content.Find
         .ClearFormatting
-        .Text = Chr(13) ' Paragraph break
+        .Text = " {2,}"
+        .Replacement.Text = " "
         .Forward = True
-        .Wrap = wdFindStop
-        .MatchWildcards = False
-
-        Do While .Execute()
-            If Not .Found Then Exit Do
-
-                Set rngStart = rngTemp.Duplicate
-                Set rngEnd = rngTemp.Duplicate
-                rngStart.Collapse wdCollapseStart
-                rngEnd.Collapse wdCollapseEnd
-
-                ' If both ranges are highlighted, replace paragraph break with a space
-                If rngStart.HighlightColorIndex <> wdNoHighlight And rngEnd.HighlightColorIndex <> wdNoHighlight Then
-                    rngStart.End = rngEnd.Start
-                    rngStart.Text = " "
-                End If
-
-                ' Reset the range
-                rngTemp.SetRange rngEnd.End, rngTemp.Document.Range.End
-            Loop
+        .Wrap = wdFindContinue
+        .MatchWildcards = True
+        .Execute Replace:=wdReplaceAll
     End With
 
     Application.ScreenUpdating = True
-    Application.DisplayAlerts = True
+    Application.DisplayAlerts  = True
 End Sub
 
 Sub CreateZappedDoc()
@@ -125,7 +139,7 @@ Sub CreateZappedDoc()
     Set ZappedDoc = Documents.Add(ActiveDocument.FullName)
 
     Call Zap
-    Call CondenseZap
+    Call CondenseCards
 
     ' Get the Downloads folder path
     downloadsDirPath = GetDownloadsDir()
