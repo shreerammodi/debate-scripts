@@ -69,12 +69,12 @@ Sub Zap()
     Application.DisplayAlerts = True
 End Sub
 
-Public Sub CondenseCards()
+Sub CondenseCards()
     Dim p As Paragraph
     Dim rng As Range
 
     Application.ScreenUpdating = False
-    Application.DisplayAlerts  = False
+    Application.DisplayAlerts = False
 
     ' Go through all paragraphs
     For Each p In ActiveDocument.Paragraphs
