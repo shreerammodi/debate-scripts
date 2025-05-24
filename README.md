@@ -101,39 +101,17 @@ To add styles to your template:
 
 # Scripts
 
-## `Create Send Doc`
+> [!NOTE]
+>
+> You must add the `GetDownloadsDir` function located in `helpers.vb` for
+> `CreateSendDoc` and `CreateZappedDoc` to work.
 
-Provides the `CreateSendDoc` macro, which creates a document in your `Downloads`
-directory having the same title as the current document with `[S]` prepended.
-The send document has all Analytics and Undertags omitted, leaving just
-cards/tags/headers.
+This repo provides the following macros:
 
-## `Create Zap Doc`
-
-Provides `Zap`, `CondenseZap`, and `CreateZappedDoc`.
-
-`Zap` deletes all text from card bodies in the current document that is not
-highlighted, i.e. any text that is not to be read in a speech.
-
-`CondenseZap` formats the Zapped document properly, removing unnecessary line
-breaks in the card bodies due to the way `Zap` works.
-
-`CreateZappedDoc` creates a document in your `Downloads` directory having the
-same title as the current document with `[R]` prepended. It then runs `Zap` and
-`CondenseZap` on that document.
-
-## `For Reference`
-
-Provides `ForReference`, which operates on a selection of text. It takes all the
-highlights in the selected text and turns them Gray. This is useful for
-referencing previously read cards in blocks, and for recutting your opponent's
-evidence.
-
-## `Highlight to Fill`
-
-Provides `ConvertHighlightsToFills`, which takes all the highlights in a
-selection of text and converts them to background fills. This is mainly useful
-for recuts of opponents' evidence, to prevent `unihighlight` from standardizing
-both your recut and their original highlight. You would first use `ForReference`
-on their evidence, then convert it to a fill (to preserve the gray color), and
-then rehighlight it.
+- Zapper: Given a speech document, creates a new document with only the text to
+  be read in round (i.e. deletes non-highlighted card body).
+- Send Doc: Given a speech document, creates a new send doc without analytics
+  and undertags.
+- For Reference: Changes the highlight color of selected text to gray.
+- Highlight to Fill: Converts highlights in selected text to a background fill;
+  this prevents them from being affected by standardize highlighting.
