@@ -115,3 +115,5 @@ This repo provides the following macros:
 - For Reference: Changes the highlight color of selected text to gray.
 - Highlight to Fill: Converts highlights in selected text to a background fill;
   this prevents them from being affected by standardize highlighting.
+- MarkCard: Allows you to conveniently mark a card at your cursor, and then
+  compile all the marked cards in the document at the end for easy reference.
