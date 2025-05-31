@@ -14,10 +14,11 @@ Sub MarkCard()
     Selection.SetRange Start:=Selection.Start + 1, End:=Selection.End
 
     ' Make the marker normal text
-    With Selection.Range
-        .Style = ActiveDocument.Styles("Normal")
+    With Selection
+        .ClearFormatting
+        .Style = ActiveDocument.styles("Normal")
         .Font.Underline = wdUnderlineNone
-        .HighlightColorIndex = wdNoHighlight
+        .Range.HighlightColorIndex = wdNoHighlight
     End With
 
     Selection.Collapse(wdCollapseEnd)
