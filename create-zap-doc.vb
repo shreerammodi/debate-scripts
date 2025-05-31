@@ -1,5 +1,6 @@
 Sub Zap()
-    Dim styles As Variant, s As Variant
+    Dim styles As Variant
+    Dim s As Variant
 
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
@@ -71,7 +72,6 @@ End Sub
 
 Sub CondenseCards()
     Dim p As Paragraph
-    Dim rng As Range
 
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
