@@ -11,7 +11,6 @@ Sub Zap()
         Options.DefaultHighlightColorIndex = wdBrightGreen
     End If
 
-
     ' First pass: turn on highlights for styles
     For Each s In styles
         With ActiveDocument.Content.Find
