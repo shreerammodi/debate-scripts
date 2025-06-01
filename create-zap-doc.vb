@@ -7,7 +7,10 @@ Sub Zap()
 
     ' Styles that should be preserved in the read doc
     styles = Array("Pocket", "Hat", "Block", "Tag", "Cite", "Analytic", "Undertag")
-    Options.DefaultHighlightColorIndex = wdTurquoise
+    If Options.DefaultHighlightColorIndex = wdNoHighlight Then
+        Options.DefaultHighlightColorIndex = wdBrightGreen
+    End If
+
 
     ' First pass: turn on highlights for styles
     For Each s In styles
