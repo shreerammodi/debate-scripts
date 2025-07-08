@@ -70,7 +70,7 @@ To do this in Windows, follow
 
 ## Adding Styles
 
-You should also add the following two styles to your Verbatim template.
+You _must_ add the following two styles to your Verbatim template.
 
 - Analytic: for analytic arguments that you want omitted from the doc you send
   to your opponent.
