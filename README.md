@@ -91,7 +91,7 @@ To add styles to your template:
 1. Open the styles pane
 2. Click `New Style`
 3. Use the following settings:
-   - Name: either `Analytic` or `Undertag`
+   - Name: `Analytic` / `Undertag`
    - Style type: `Linked (paragraph and character)`
    - Style based on: `Tag` for `Analytic` and `Normal Text` for `Undertag`
    - Style for following paragraph: `Normal`
