@@ -78,11 +78,9 @@ Sub CondenseCards()
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
 
-    ' Go through all paragraphs
     For Each p In ActiveDocument.Paragraphs
-        ' Only process Tag paragraphs
+        ' Only process Tags
         if p.OutlineLevel = wdOutlineLevel4 Then
-            ' Use Verbatim function to select the card text under the Tag
             Set CondenseRange = Paperless.SelectCardTextRange(p)
 
             ' Drop trailing paragraph mark if present
@@ -143,7 +141,6 @@ Sub CreateZappedDoc()
     Call Zap
     Call CondenseCards
 
-    ' Get the Downloads folder path
     downloadsDirPath = GetDownloadsDir()
     savePath = downloadsDirPath & "[R] " & originalDoc.Name
     ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
