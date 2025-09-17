@@ -1,4 +1,4 @@
-Sub ForReference()
+Public Sub ForReference()
     Dim selRange As Range
     Dim procRange As Range
     Dim selEnd   As Long

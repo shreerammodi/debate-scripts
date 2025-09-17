@@ -1,4 +1,4 @@
-Function GetDownloadsDir() As String
+Private Function GetDownloadsDir() As String
     Dim downloadsPath As String
 
     #If Mac Then

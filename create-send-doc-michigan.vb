@@ -1,4 +1,4 @@
-Sub DeleteAnalyticsMichigan()
+Private Sub DeleteAnalyticsMichigan()
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
 
@@ -34,7 +34,7 @@ Sub DeleteAnalyticsMichigan()
 
 End Sub
 
-Sub CreateSendDocMichigan()
+Public Sub CreateSendDocMichigan()
     Dim downloadsDirPath As String
     Dim originalDoc As Document
     Dim savePath As String

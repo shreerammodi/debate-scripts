@@ -1,4 +1,4 @@
-Sub MarkCard()
+Public Sub MarkCard()
     Dim p As Paragraph
     Dim rngCard As Range
     Dim markerText As String
@@ -35,7 +35,7 @@ Sub MarkCard()
     rngCard.Font.Color = wdColorRed
 End Sub
 
-Sub CompileMarkedCards()
+Public Sub CompileMarkedCards()
     Dim p As Paragraph
     Dim cardRng as Range
     Dim hdrRng As Range

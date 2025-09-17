@@ -1,4 +1,4 @@
-Sub Zap()
+Private Sub Zap()
     Dim styles As Variant
     Dim s As Variant
 
@@ -72,7 +72,7 @@ Sub Zap()
     Application.DisplayAlerts = True
 End Sub
 
-Sub CondenseCards()
+Private Sub CondenseCards()
     Dim p As Paragraph
 
     Application.ScreenUpdating = False
@@ -123,7 +123,7 @@ Sub CondenseCards()
     Application.DisplayAlerts  = True
 End Sub
 
-Sub CreateZappedDoc()
+Public Sub CreateZappedDoc()
     Dim originalDoc As Document
     Dim originalFilePath As String
     Dim originalFolderPath As String

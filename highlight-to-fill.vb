@@ -1,4 +1,4 @@
-Sub ConvertHighlightsToFills()
+Public Sub ConvertHighlightsToFills()
     Dim rng As Range
     Dim ch As Range
     Dim fillCol As Long

@@ -1,4 +1,4 @@
-Sub DeleteAnalytics()
+Private Sub DeleteAnalytics()
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
 
@@ -23,7 +23,7 @@ Sub DeleteAnalytics()
     End With
 End Sub
 
-Sub CreateSendDoc()
+Public Sub CreateSendDoc()
     Dim downloadsDirPath As String
     Dim originalDoc As Document
     Dim savePath As String
