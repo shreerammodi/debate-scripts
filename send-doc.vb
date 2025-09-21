@@ -2,7 +2,7 @@ Private Sub DeleteAnalytics()
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
 
-    If StyleExists("Analytic")
+    If StyleExists("Analytic") Then
         With ActiveDocument.Content.Find
             .ClearFormatting
             .Style = "Analytic"
@@ -14,7 +14,7 @@ Private Sub DeleteAnalytics()
         End With
     End If
 
-    If StyleExists("Undertag")
+    If StyleExists("Undertag") Then
         With ActiveDocument.Content.Find
             .ClearFormatting
             .Style = "Undertag"
@@ -26,7 +26,7 @@ Private Sub DeleteAnalytics()
         End With
     End If
 
-    If StyleExists("Analytics")
+    If StyleExists("Analytics") Then
         With ActiveDocument.Content.Find
             .ClearFormatting
             .Style = "Analytics"
