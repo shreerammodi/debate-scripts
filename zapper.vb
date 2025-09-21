@@ -15,8 +15,9 @@ Private Sub ZapRange(ByVal targetRange As Range)
 
     ' Styles that should be preserved in the read doc
     styles = Array("Pocket", "Hat", "Block", "Tag", "Cite", "Analytic", "Analytics", "Undertag")
+
     If Options.DefaultHighlightColorIndex = wdNoHighlight Then
-        Options.DefaultHighlightColorIndex = wdBrightGreen
+        Options.DefaultHighlightColorIndex = wdTurquoise
     End If
 
     ' First pass: turn on highlights for styles
