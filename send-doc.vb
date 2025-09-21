@@ -2,25 +2,42 @@ Private Sub DeleteAnalytics()
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
 
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Analytic"
-        .Text = ""
-        .Replacement.Text = ""
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Execute Replace:=wdReplaceAll
-    End With
+    If StyleExists("Analytic")
+        With ActiveDocument.Content.Find
+            .ClearFormatting
+            .Style = "Analytic"
+            .Text = ""
+            .Replacement.Text = ""
+            .Forward = True
+            .Wrap = wdFindContinue
+            .Execute Replace:=wdReplaceAll
+        End With
+    End If
 
-    With ActiveDocument.Content.Find
-        .ClearFormatting
-        .Style = "Undertag"
-        .Text = ""
-        .Replacement.Text = ""
-        .Forward = True
-        .Wrap = wdFindContinue
-        .Execute Replace:=wdReplaceAll
-    End With
+    If StyleExists("Undertag")
+        With ActiveDocument.Content.Find
+            .ClearFormatting
+            .Style = "Undertag"
+            .Text = ""
+            .Replacement.Text = ""
+            .Forward = True
+            .Wrap = wdFindContinue
+            .Execute Replace:=wdReplaceAll
+        End With
+    End If
+
+    If StyleExists("Analytics")
+        With ActiveDocument.Content.Find
+            .ClearFormatting
+            .Style = "Analytics"
+            .Text = ""
+            .Replacement.Text = ""
+            .Forward = True
+            .Wrap = wdFindContinue
+            .Execute Replace:=wdReplaceAll
+        End With
+    End If
+
 End Sub
 
 Public Sub CreateSendDoc()

@@ -14,7 +14,7 @@ Private Sub ZapRange(ByVal targetRange As Range)
     Application.DisplayAlerts = False
 
     ' Styles that should be preserved in the read doc
-    styles = Array("Pocket", "Hat", "Block", "Tag", "Cite", "Analytic", "Undertag")
+    styles = Array("Pocket", "Hat", "Block", "Tag", "Cite", "Analytic", "Analytics", "Undertag")
     If Options.DefaultHighlightColorIndex = wdNoHighlight Then
         Options.DefaultHighlightColorIndex = wdBrightGreen
     End If
