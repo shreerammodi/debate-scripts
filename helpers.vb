@@ -12,3 +12,9 @@ Private Function GetDownloadsDir() As String
 
     GetDownloadsDir = downloadsPath
 End Function
+
+Private Function StyleExists(styleName As String) As Boolean
+    On Error Resume Next
+    StyleExists = Not ActiveDocument.Styles(styleName) Is Nothing
+    On Error GoTo 0
+End Function
