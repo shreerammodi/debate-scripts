@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2025-09-21
+
+### Added
+
+- **Granular zapper**: enables zapping of a single card in the doc
+  ([#3](https://github.com/shreerammodi/debate-scripts/issues/3))
+  ([f827dcff9c](https://github.com/shreerammodi/debate-scripts/commit/f827dcff9cc50b0f6ab06858485e03d673cf39bc))
+
+### Changed
+
+- **Michigan compatibility**: ensures zapper and send-doc work with Michigan
+  "Analytics" style
+  ([f8eefa299c](https://github.com/shreerammodi/debate-scripts/commit/f8eefa299c565d239ca17550e87440484509305b))
+
+### Fixed
+
+- Check for styles before running scripts to prevent errors
+  ([f85eafd585](https://github.com/shreerammodi/debate-scripts/commit/f85eafd5854c49d1e653d9112386ade5f3f1a5fb))
+
 ## [1.2.2] - 2025-06-01
 
 ### Fixed
@@ -46,6 +65,7 @@ and this project adheres to
 
 Initial Release
 
+[1.2.2]: https://github.com/shreerammodi/debate-scripts/compare/v1.2.2...v2.0.0
 [1.2.2]: https://github.com/shreerammodi/debate-scripts/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/shreerammodi/debate-scripts/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/shreerammodi/debate-scripts/compare/v1.1.0...v1.2.0
