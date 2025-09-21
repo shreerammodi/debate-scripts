@@ -2,6 +2,10 @@ Private Sub Zap()
     ZapRange ActiveDocument.Content
 End Sub
 
+Private Sub CondenseCards()
+    CondenseCardsRange ActiveDocument.Content
+End Sub
+
 Private Sub ZapRange(ByVal targetRange As Range)
     Dim styles As Variant
     Dim s As Variant
@@ -76,13 +80,13 @@ Private Sub ZapRange(ByVal targetRange As Range)
     Application.DisplayAlerts = True
 End Sub
 
-Private Sub CondenseCards()
+Private Sub CondenseCardsRange(ByVal targetRange As Range)
     Dim p As Paragraph
 
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
 
-    For Each p In ActiveDocument.Paragraphs
+    For Each p In targetRange.Paragraphs
         ' Only process Tags
         if p.OutlineLevel = wdOutlineLevel4 Then
             Set CondenseRange = SelectCardTextRange(p)
@@ -113,7 +117,7 @@ Private Sub CondenseCards()
     Next p
 
     ' Remove duplicate spaces
-    With ActiveDocument.Content.Find
+    With targetRange.Find
         .ClearFormatting
         .Text = " {2,}"
         .Replacement.Text = " "
@@ -153,13 +157,22 @@ Public Sub CreateZappedDoc()
     Application.DisplayAlerts = True
 End Sub
 
-Public Sub ZapSelection()
-    ' Make sure something is selected
-    If Selection.Type = wdNoSelection Or Len(Selection.Range.Text) = 0 Then
-        MsgBox "Please select some text before running this macro.", vbExclamation
-        Exit Sub
-    End If
+Public Sub ZapCard()
+    Dim p As Paragraph
+    Dim cardRange As Range
 
-    ' Apply zapping to only the selected range
-    ZapRange Selection.Range
+    ' Get the paragraph containing the cursor
+    Set p = Selection.Paragraphs(1)
+
+    ' Check if cursor is in a heading 4 (Tag)
+    If p.OutlineLevel = wdOutlineLevel4 Then
+        ' Get the range for this card
+        Set cardRange = SelectHeadingAndContentRange(p)
+
+        ' Apply zapping and condensing to just this card
+        ZapRange cardRange
+        CondenseCardsRange cardRange
+    Else
+        MsgBox "Please place your cursor in a Tag before running this macro.", vbExclamation
+    End If
 End Sub
