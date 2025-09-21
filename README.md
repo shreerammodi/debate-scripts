@@ -1,23 +1,11 @@
 # Debate Scripts
 
-This is a collection of scripts to extend Verbatim's functionality. The
-motivation for creating this repo was to make available the best versions of
-scripts I know of in a repo accessible to the community. Additionally, this
-enables installation of scripts in a way that doesn't require installation of a
-separate version of Verbatim, which can often cause issues with permissions and
-antivirus.
+This is a collection of scripts to extend Verbatim's functionality and provide
+macros that are useful in competitive debate.
 
 Note that the work is not entirely my own and large amounts of inspiration and
 certain functions have been taken from other people's implementations of these
 macros.
-
-> [!WARNING]
->
-> You should generally have an idea of how your computer works before installing
-> these scripts. I've comprehensively tested the scripts on my computer, and
-> they have been successfully installed on other peoples' computers as well.
-> While my instructions are thorough, as a rule of thumb you should understand
-> what you're doing to your machine and not blindly follow instructions.
 
 # Installation
 
@@ -43,13 +31,13 @@ You'll now have a developer tab in the Word ribbon. Then,
 ## Adding Macros
 
 I would recommend adding macros to a new module. You can do this by going to the
-left sidebar, expanding Verbatim, and right clicking
+sidebar on the left, expanding Verbatim, right clicking, then going into
 `Modules > Insert > Module`. Then, you should copy and paste each script from
 the files in this repo into that new module.
 
 You can generally pick and choose which scripts to add, with the exception that
-the `helper.vb` script is necessary for the `create-send-doc.vb` and
-`create-zap-doc.vb` scripts to work.
+the `helper.vb` script is necessary for the `send-doc` and `zapper` scripts to
+work.
 
 ## Adding Keybindings
 
@@ -101,19 +89,24 @@ To add styles to your template:
 
 # Scripts
 
-> [!NOTE]
->
-> You must add the `GetDownloadsDir` function located in `helpers.vb` for
-> `CreateSendDoc` and `CreateZappedDoc` to work.
+We provide the following scripts:
 
-This repo provides the following macros:
-
-- Zapper: Given a speech document, creates a new document with only the text to
-  be read in round (i.e. deletes non-highlighted card body).
-- Send Doc: Given a speech document, creates a new send doc without analytics
-  and undertags.
-- For Reference: Changes the highlight color of selected text to gray.
-- Highlight to Fill: Converts highlights in selected text to a background fill;
-  this prevents them from being affected by standardize highlighting.
-- MarkCard: Allows you to conveniently mark a card at your cursor, and then
-  compile all the marked cards in the document at the end for easy reference.
+- **Zapper**: this deletes all text which is not to be read in round, like
+  non-highlighted card body. There are two callable functions:
+  - `CreateZappedDoc`: this creates a new document which is a zapped version of
+    the currently opened doc.
+  - `ZapCard`: with your cursor in the tag of a card, calling this zaps only the
+    current card in the current document.
+- `CreateSendDoc`: Given a speech document, creates a new send doc without
+  analytics and undertags.
+- `ForReference`: Changes the highlight color of selected text to gray.
+- `HighlightToFill`: Converts highlights in selected text to a background fill,
+  preventing them from being affected by standardize highlighting.
+- **Card Marker**: Allows you to conveniently mark a card at your cursor and
+  then compile all the marked cards in the document at the end for easy
+  reference.
+  - `MarkCard`: creates a "mark" at the cursor's position in the body of a card,
+    shading the rest of the card body red to indicate it wasn't read during the
+    speech.
+  - `CompileMarkedCards`: creates a section at the bottom of the doc with all
+    the cards marked in the current document.
