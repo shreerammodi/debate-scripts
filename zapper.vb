@@ -1,4 +1,8 @@
 Private Sub Zap()
+    ZapRange ActiveDocument.Content
+End Sub
+
+Private Sub ZapRange(ByVal targetRange As Range)
     Dim styles As Variant
     Dim s As Variant
 
@@ -13,12 +17,12 @@ Private Sub Zap()
 
     ' First pass: turn on highlights for styles
     For Each s In styles
-        With ActiveDocument.Content.Find
+        With targetRange.Find
             .ClearFormatting
             .Style = s
             .Text = ""
             .Forward = True
-            .Wrap = wdFindContinue
+            .Wrap = wdFindStop
             .Format = True
             .MatchWildcards = True
 
@@ -32,14 +36,14 @@ Private Sub Zap()
         End With
     Next s
 
-    
+
     ' Second pass: Delete anything that isn't highlighted
-    With ActiveDocument.Content.Find
+    With targetRange.Find
         .ClearFormatting
         .Highlight = False
         .Text = ""
         .Forward = True
-        .Wrap = wdFindContinue
+        .Wrap = wdFindStop
         .Format = True
 
         With .Replacement
@@ -51,11 +55,11 @@ Private Sub Zap()
 
     ' Third pass: Remove highlighting from styles
     For Each s In styles
-        With ActiveDocument.Content.Find
+        With targetRange.Find
             .ClearFormatting
             .Style = s
             .Forward = True
-            .Wrap = wdFindContinue
+            .Wrap = wdFindStop
             .Format = True
             .MatchWildcards = True
 
@@ -81,7 +85,7 @@ Private Sub CondenseCards()
     For Each p In ActiveDocument.Paragraphs
         ' Only process Tags
         if p.OutlineLevel = wdOutlineLevel4 Then
-            Set CondenseRange = Paperless.SelectCardTextRange(p)
+            Set CondenseRange = SelectCardTextRange(p)
 
             ' Drop trailing paragraph mark if present
             If CondenseRange.Characters.Last.Text = Chr(13) Then
@@ -147,4 +151,15 @@ Public Sub CreateZappedDoc()
 
     Application.ScreenUpdating = True
     Application.DisplayAlerts = True
+End Sub
+
+Public Sub ZapSelection()
+    ' Make sure something is selected
+    If Selection.Type = wdNoSelection Or Len(Selection.Range.Text) = 0 Then
+        MsgBox "Please select some text before running this macro.", vbExclamation
+        Exit Sub
+    End If
+
+    ' Apply zapping to only the selected range
+    ZapRange Selection.Range
 End Sub
