@@ -21,23 +21,25 @@ Private Sub ZapRange(ByVal targetRange As Range)
 
     ' First pass: turn on highlights for styles
     For Each s In styles
-        With targetRange.Find
-            .ClearFormatting
-            .Style = s
-            .Text = ""
-            .Forward = True
-            .Wrap = wdFindStop
-            .Format = True
-            .MatchWildcards = True
-
-            With .Replacement
+        If StyleExists(CStr(s)) Then
+            With targetRange.Find
                 .ClearFormatting
-                .Text = "^&"
-                .Highlight = True
-            End With
+                .Style = s
+                .Text = ""
+                .Forward = True
+                .Wrap = wdFindStop
+                .Format = True
+                .MatchWildcards = True
 
-            .Execute Replace:=wdReplaceAll
-        End With
+                With .Replacement
+                    .ClearFormatting
+                    .Text = "^&"
+                    .Highlight = True
+                End With
+
+                .Execute Replace:=wdReplaceAll
+            End With
+        End If
     Next s
 
 
@@ -59,21 +61,23 @@ Private Sub ZapRange(ByVal targetRange As Range)
 
     ' Third pass: Remove highlighting from styles
     For Each s In styles
-        With targetRange.Find
-            .ClearFormatting
-            .Style = s
-            .Forward = True
-            .Wrap = wdFindStop
-            .Format = True
-            .MatchWildcards = True
-
-            With .Replacement
-                .Text = "^&"
+        If StyleExists(CStr(s)) Then
+            With targetRange.Find
                 .ClearFormatting
-                .Highlight = False
+                .Style = s
+                .Forward = True
+                .Wrap = wdFindStop
+                .Format = True
+                .MatchWildcards = True
+
+                With .Replacement
+                    .Text = "^&"
+                    .ClearFormatting
+                    .Highlight = False
+                End With
+                .Execute Replace:=wdReplaceAll
             End With
-            .Execute Replace:=wdReplaceAll
-        End With
+        End If
     Next s
 
     Application.ScreenUpdating = True
