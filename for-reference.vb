@@ -34,7 +34,8 @@ Public Sub ForReference()
         If procRange.Start >= selEnd Then Exit Do
 
             ' Recolor this run
-            procRange.HighlightColorIndex = wdGray25
+            procRange.HighlightColorIndex = wdNoHighlight
+            procRange.Shading.BackgroundPatternColor = RGB(210, 210, 210)
 
             ' Move past it
             procRange.Collapse wdCollapseEnd
