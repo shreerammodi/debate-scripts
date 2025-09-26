@@ -99,9 +99,9 @@ We provide the following scripts:
     current card in the current document.
 - `CreateSendDoc`: Given a speech document, creates a new send doc without
   analytics and undertags.
-- `ForReference`: Changes the highlight color of selected text to gray.
-- `HighlightToFill`: Converts highlights in selected text to a background fill,
-  preventing them from being affected by standardize highlighting.
+- `ForReference`: Changes the highlight color of selected text to gray and
+  converts it to a background fill, preventing it from being affected by
+  standardize highlighting.
 - **Card Marker**: Allows you to conveniently mark a card at your cursor and
   then compile all the marked cards in the document at the end for easy
   reference.
