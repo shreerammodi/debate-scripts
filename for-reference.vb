@@ -35,7 +35,7 @@ Public Sub ForReference()
 
             ' Recolor this run
             procRange.HighlightColorIndex = wdNoHighlight
-            procRange.Shading.BackgroundPatternColor = RGB(210, 210, 210)
+            procRange.Shading.BackgroundPatternColor = wdColorGray20
 
             ' Move past it
             procRange.Collapse wdCollapseEnd
