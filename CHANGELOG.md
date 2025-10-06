@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2025-10-06
+
+### Changed
+
+- Combined ForReference and HighlightToFill
+  ([45e0ea2cb9](https://github.com/shreerammodi/debate-scripts/commit/45e0ea2cb9))
+- Use VBA preset gray color for
+  ForReference([1b74062852](https://github.com/shreerammodi/debate-scripts/commit/1b74062852))
+
+### Fixed
+
+- Enable multiple read docs to be open
+  ([840199b0e0](https://github.com/shreerammodi/debate-scripts/commit/840199b0e0))
+
 ## [2.0.0] - 2025-09-21
 
 ### Added
@@ -65,8 +79,7 @@ and this project adheres to
 
 Initial Release
 
-[unreleased]:
-  https://github.com/shreerammodi/debate-scripts/compare/v2.0.0...HEAD
+[2.1.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.0.0...v2.0.0
 [2.0.0]: https://github.com/shreerammodi/debate-scripts/compare/v1.2.2...v2.0.0
 [1.2.2]: https://github.com/shreerammodi/debate-scripts/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/shreerammodi/debate-scripts/compare/v1.2.0...v1.2.1
