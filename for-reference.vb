@@ -1,46 +1,63 @@
-Public Sub ForReference()
+Public Sub ForReferenceSlow()
     Dim selRange As Range
-    Dim procRange As Range
-    Dim selEnd   As Long
+    Dim i As Long
+    Dim charRange As Range
 
-    ' Make sure something is selected
     If Selection.Type = wdNoSelection Or Len(Selection.Range.Text) = 0 Then
         MsgBox "Please select some text before running this macro.", vbExclamation
         Exit Sub
     End If
 
-    ' Turn off screen updating for speed
+    Application.ScreenUpdating = False
+
+    Set selRange = Selection.Range
+
+    For i = 0 To selRange.Characters.Count - 1
+        Set charRange = selRange.Duplicate
+        charRange.SetRange Start:=selRange.Start + i, End:=selRange.Start + i + 1
+
+        If charRange.HighlightColorIndex <> wdNoHighlight Then
+            charRange.HighlightColorIndex = wdNoHighlight
+            charRange.Shading.BackgroundPatternColor = wdColorGray20
+        End If
+    Next i
+
+    Application.ScreenUpdating = True
+End Sub
+
+Public Sub ForReferenceFast()
+    Dim selRange As Range
+    Dim procRange As Range
+    Dim selEnd   As Long
+
+    If Selection.Type = wdNoSelection Or Len(Selection.Range.Text) = 0 Then
+        MsgBox "Please select some text before running this macro.", vbExclamation
+        Exit Sub
+    End If
+
     Application.ScreenUpdating = False
 
     ' Grab your selection and remember its end
     Set selRange = Selection.Range
     selEnd = selRange.End
 
-    ' Work on a copy so we don't lose the original boundaries
     Set procRange = selRange.Duplicate
 
     With procRange.Find
         .ClearFormatting
-        .Text = ""                ' find formatting only
-        .Highlight = True         ' only existing highlights
+        .Text = ""
+        .Highlight = True
         .Format = True
         .Forward = True
-        .Wrap = wdFindStop        ' do not go past procRange
+        .Wrap = wdFindStop
     End With
 
-    ' Loop through each found highlighted run
     Do While procRange.Find.Execute
-        ' If we've passed the original selection, exit
         If procRange.Start >= selEnd Then Exit Do
-
-            ' Recolor this run
             procRange.HighlightColorIndex = wdNoHighlight
             procRange.Shading.BackgroundPatternColor = wdColorGray20
-
-            ' Move past it
             procRange.Collapse wdCollapseEnd
         Loop
 
-    ' Restore updating
-    Application.ScreenUpdating = True
-End Sub
+        Application.ScreenUpdating = True
+    End Sub
