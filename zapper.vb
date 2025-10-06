@@ -138,10 +138,11 @@ End Sub
 
 Public Sub CreateZappedDoc()
     Dim originalDoc As Document
-    Dim originalFilePath As String
-    Dim originalFolderPath As String
     Dim savePath As String
     Dim zappedDoc As Document
+    Dim baseFileName As String
+    Dim counter As Integer
+    Dim fileExist As Boolean
 
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
@@ -149,13 +150,35 @@ Public Sub CreateZappedDoc()
     ActiveDocument.Save
     Set originalDoc = ActiveDocument
 
-    Set ZappedDoc = Documents.Add(ActiveDocument.FullName)
+    Set zappedDoc = Documents.Add(ActiveDocument.FullName)
 
     Call Zap
     Call CondenseCards
 
     downloadsDirPath = GetDownloadsDir()
-    savePath = downloadsDirPath & "[R] " & originalDoc.Name
+    baseFileName = "[R] " & originalDoc.Name
+    savePath = downloadsDirPath & baseFileName
+
+    counter = 1
+
+    fileExist = (Dir(savePath) <> "")
+
+    Do While fileExist
+        Dim baseName As String
+        Dim extension As String
+        Dim dotPos As Integer
+
+        dotPos = InStrRev(baseFileName, ".")
+
+        baseName = Left(baseFileName, dotPos - 1)
+        extension = Mid(baseFileName, dotPos)
+
+        savePath = downloadsDirPath & baseName & " (" & counter & ")" & extension
+        counter = counter + 1
+
+        fileExist = (Dir(savePath) <> "")
+    Loop
+
     ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
 
     Application.ScreenUpdating = True
