@@ -18,6 +18,7 @@ and this project adheres to
 ### Fixed
 
 - Enable multiple read docs to be open
+  (https://github.com/shreerammodi/debate-scripts/issues/7)
   ([840199b0e0](https://github.com/shreerammodi/debate-scripts/commit/840199b0e0))
 
 ## [2.0.0] - 2025-09-21
