@@ -104,7 +104,7 @@ Private Sub CondenseCardsRange(ByVal targetRange As Range)
 
             ' Drop trailing paragraph mark if present
             If CondenseRange.Characters.Last.Text = Chr(13) Then
-                CondenseRange.MoveEnd(wdCharacter, -1)
+                CondenseRange.MoveEnd wdCharacter, -1
             End If
 
             ' Skip cards with nothing but the Tag itself
