@@ -99,7 +99,7 @@ Private Sub CondenseCardsRange(ByVal targetRange As Range)
             ' Drop beginning whitespace if present
             If CondenseRange.Characters.First.Text = Chr(13) Then
                 CondenseRange.Characters(1).Delete
-                Set CondenseRange = SelectCardTextRange(p)
+                CondenseRange.MoveStart wdParagraph, +1
             End If
 
             ' Drop trailing paragraph mark if present
