@@ -96,9 +96,15 @@ Private Sub CondenseCardsRange(ByVal targetRange As Range)
         if p.OutlineLevel = wdOutlineLevel4 Then
             Set CondenseRange = SelectCardTextRange(p)
 
+            ' Drop beginning whitespace if present
+            If CondenseRange.Characters.First.Text = Chr(13) Then
+                CondenseRange.Characters(1).Delete
+                Set CondenseRange = SelectCardTextRange(p)
+            End If
+
             ' Drop trailing paragraph mark if present
             If CondenseRange.Characters.Last.Text = Chr(13) Then
-                CondenseRange.MoveEnd wdCharacter, -1
+                CondenseRange.MoveEnd(wdCharacter, -1)
             End If
 
             ' Skip cards with nothing but the Tag itself
