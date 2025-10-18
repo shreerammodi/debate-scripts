@@ -1,4 +1,4 @@
-Private Sub Zap()
+Public Sub Zap()
     ZapRange ActiveDocument.Content
 End Sub
 
