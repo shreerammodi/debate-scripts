@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2025-10-26
+
+### Added
+
+- `SendDocNoHeadings` function
+  ([6e5cc46d9e0e](https://github.com/shrimpram/debate-scripts/comimt/6e5cc46d9e0e))
+
+### Changed
+
+- Made zap public
+  ([317f91148251](https://github.com/shreerammodi/debate-scripts/commit/317f91148251))
+- Zapper now deletes undertags
+  ([65d7c78e26f5](https://github.com/shreerammodi/debate-scripts/commit/65d7c78e26f5))
+
 ## [2.2.1] - 2025-10-17
 
 ### Changed
@@ -99,6 +113,7 @@ and this project adheres to
 
 Initial Release
 
+[2.3.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.2.1...v2.3.0
 [2.2.1]: https://github.com/shreerammodi/debate-scripts/compare/v2.2.0...v2.2.1
 [2.2.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.0.0...v2.1.0
