@@ -1,46 +1,32 @@
-Private Sub DeleteAnalytics()
-    Application.ScreenUpdating = False
-    Application.DisplayAlerts = False
-
-    If StyleExists("Analytic") Then
-        With ActiveDocument.Content.Find
-            .ClearFormatting
-            .Style = "Analytic"
-            .Text = ""
-            .Replacement.Text = ""
-            .Forward = True
-            .Wrap = wdFindContinue
-            .Execute Replace:=wdReplaceAll
-        End With
-    End If
-
-    If StyleExists("Undertag") Then
-        With ActiveDocument.Content.Find
-            .ClearFormatting
-            .Style = "Undertag"
-            .Text = ""
-            .Replacement.Text = ""
-            .Forward = True
-            .Wrap = wdFindContinue
-            .Execute Replace:=wdReplaceAll
-        End With
-    End If
-
-    If StyleExists("Analytics") Then
-        With ActiveDocument.Content.Find
-            .ClearFormatting
-            .Style = "Analytics"
-            .Text = ""
-            .Replacement.Text = ""
-            .Forward = True
-            .Wrap = wdFindContinue
-            .Execute Replace:=wdReplaceAll
-        End With
-    End If
-
+Private Sub DeleteStyles(styles As Variant)
+    For Each s in styles
+        If StyleExists(CStr(s)) Then
+            With ActiveDocument.Content.Find
+                .ClearFormatting
+                .Style = s
+                .Text = ""
+                .Replacement.Text = ""
+                .Forward = True
+                .Wrap = wdFindContinue
+                .Execute Replace:=wdReplaceAll
+            End With
+        End If
+    Next s
 End Sub
 
 Public Sub CreateSendDoc()
+    Dim styles As Variant
+    styles = Array("Analytic", "Analytics", "Undertag")
+    Call SendDoc(styles)
+End Sub
+
+Public Sub CreateSendDocNoHeaders()
+    Dim styles As Variant
+    styles = Array("Analytic", "Analytics", "Undertag", "Block")
+    Call SendDoc(styles)
+End Sub
+
+Private Sub SendDoc(styles as Variant)
     Dim downloadsDirPath As String
     Dim originalDoc As Document
     Dim savePath As String
@@ -55,9 +41,8 @@ Public Sub CreateSendDoc()
     Set sendDoc = Documents.Add(ActiveDocument.FullName)
 
     ' Process the document to remove analytics content
-    Call DeleteAnalytics
+    Call DeleteStyles(styles)
 
-    ' Get the Downloads folder path
     downloadsDirPath = GetDownloadsDir()
     savePath = downloadsDirPath & "[S] " & originalDoc.Name
     ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
