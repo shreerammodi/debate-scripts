@@ -57,7 +57,8 @@ Public Sub ForReferenceFast()
             procRange.HighlightColorIndex = wdNoHighlight
             procRange.Shading.BackgroundPatternColor = wdColorGray20
             procRange.Collapse wdCollapseEnd
-        Loop
+        End If
+    Loop
 
-        Application.ScreenUpdating = True
-    End Sub
+    Application.ScreenUpdating = True
+End Sub
