@@ -54,10 +54,9 @@ Public Sub ForReferenceFast()
 
     Do While procRange.Find.Execute
         If procRange.Start >= selEnd Then Exit Do
-            procRange.HighlightColorIndex = wdNoHighlight
-            procRange.Shading.BackgroundPatternColor = wdColorGray20
-            procRange.Collapse wdCollapseEnd
-        End If
+        procRange.HighlightColorIndex = wdNoHighlight
+        procRange.Shading.BackgroundPatternColor = wdColorGray20
+        procRange.Collapse wdCollapseEnd
     Loop
 
     Application.ScreenUpdating = True
