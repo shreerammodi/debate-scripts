@@ -18,3 +18,14 @@ Public Function StyleExists(styleName As String) As Boolean
     StyleExists = Not ActiveDocument.Styles(styleName) Is Nothing
     On Error GoTo 0
 End Function
+
+' ==================================================
+' SETTINGS - Edit these values to configure behavior
+' ==================================================
+
+' Set to True to shrink text by 2 font size when running ForReference
+' Set to False to keep text at original size
+
+Public Function ShrinkForReference() As Boolean
+    ShrinkForReference = True
+End Function

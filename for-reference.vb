@@ -2,6 +2,7 @@ Public Sub ForReferenceSlow()
     Dim selRange As Range
     Dim i As Long
     Dim charRange As Range
+    Dim sfr As Boolean = ShrinkForReference()
 
     If Selection.Type = wdNoSelection Or Len(Selection.Range.Text) = 0 Then
         MsgBox "Please select some text before running this macro.", vbExclamation
@@ -11,6 +12,12 @@ Public Sub ForReferenceSlow()
     Application.ScreenUpdating = False
 
     Set selRange = Selection.Range
+
+    If sfr = True Then
+        For i = 0 To 2
+            selRange.Font.Shrink
+        Next i
+    End If
 
     For i = 0 To selRange.Characters.Count - 1
         Set charRange = selRange.Duplicate
@@ -29,6 +36,7 @@ Public Sub ForReferenceFast()
     Dim selRange As Range
     Dim procRange As Range
     Dim selEnd   As Long
+    Dim sfr As Boolean = ShrinkForReference()
 
     If Selection.Type = wdNoSelection Or Len(Selection.Range.Text) = 0 Then
         MsgBox "Please select some text before running this macro.", vbExclamation
@@ -40,6 +48,12 @@ Public Sub ForReferenceFast()
     ' Grab your selection and remember its end
     Set selRange = Selection.Range
     selEnd = selRange.End
+
+    If sfr = True Then
+        For i = 0 To 2
+            selRange.Font.Shrink
+        Next i
+    End If
 
     Set procRange = selRange.Duplicate
 
