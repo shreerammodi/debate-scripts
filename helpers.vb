@@ -1,4 +1,4 @@
-Private Function GetDownloadsDir() As String
+Public Function GetDownloadsDir() As String
     Dim downloadsPath As String
 
     #If Mac Then
@@ -13,7 +13,7 @@ Private Function GetDownloadsDir() As String
     GetDownloadsDir = downloadsPath
 End Function
 
-Private Function StyleExists(styleName As String) As Boolean
+Public Function StyleExists(styleName As String) As Boolean
     On Error Resume Next
     StyleExists = Not ActiveDocument.Styles(styleName) Is Nothing
     On Error GoTo 0
