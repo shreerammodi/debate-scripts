@@ -22,7 +22,7 @@ End Sub
 
 Public Sub CreateSendDocNoHeaders()
     Dim styles As Variant
-    styles = Array("Analytic", "Analytics", "Undertag", "Block")
+    styles = Array("Analytic", "Analytics", "Undertag", "Block", "Hat", "Pocket")
     Call SendDoc(styles)
 End Sub
 
