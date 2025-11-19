@@ -23,9 +23,14 @@ End Function
 ' SETTINGS - Edit these values to configure behavior
 ' ==================================================
 
-' Set to True to shrink text by 2 font size when running ForReference
+' Set to True to shrink text when running ForReference
 ' Set to False to keep text at original size
 
 Public Function ShrinkForReference() As Boolean
     ShrinkForReference = True
+End Function
+
+' Set to the font size you want to shrink text in ForReference by
+Public Function ShrinkBy() As Integer
+    ShrinkBy = 1
 End Function

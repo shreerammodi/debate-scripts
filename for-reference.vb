@@ -4,6 +4,8 @@ Public Sub ForReferenceSlow()
     Dim charRange As Range
     Dim sfr As Boolean
     sfr = ShrinkForReference()
+    Dim shrinkByAmount As Integer
+    shrinkByAmount = ShrinkBy()
 
     If Selection.Type = wdNoSelection Or Len(Selection.Range.Text) = 0 Then
         MsgBox "Please select some text before running this macro.", vbExclamation
@@ -15,7 +17,7 @@ Public Sub ForReferenceSlow()
     Set selRange = Selection.Range
 
     If sfr = True Then
-        For i = 0 To 2
+        For i = 0 To shrinkByAmount
             selRange.Font.Shrink
         Next i
     End If
@@ -39,6 +41,8 @@ Public Sub ForReferenceFast()
     Dim selEnd   As Long
     Dim sfr As Boolean
     sfr = ShrinkForReference()
+    Dim shrinkByAmount As Integer
+    shrinkByAmount = ShrinkBy()
 
     If Selection.Type = wdNoSelection Or Len(Selection.Range.Text) = 0 Then
         MsgBox "Please select some text before running this macro.", vbExclamation
@@ -52,7 +56,7 @@ Public Sub ForReferenceFast()
     selEnd = selRange.End
 
     If sfr = True Then
-        For i = 0 To 2
+        For i = 0 To shrinkByAmount
             selRange.Font.Shrink
         Next i
     End If
