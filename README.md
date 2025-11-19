@@ -78,6 +78,11 @@ For `Analytic`, go back to your document, select a `Tag`, right-click the
 
 You can aestheticize the styles as you wish.
 
+## Customization
+
+Some of the scripts permit user customization, you can find and customize these
+values in the `helpers.vb` file at the bottom.
+
 ## Scripts
 
 We provide the following scripts:
