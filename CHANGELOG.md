@@ -6,43 +6,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2025-11-28
+
+### Added
+
+- Acronym macros
+  ([d71a415153](https://github.com/shreerammodi/debate-scripts/commit/d71a415153))
+
 ## [2.5.0] - 2025-11-19
 
 ### Added
 
 - Customization of `ForReference` shrink size
-  ([fb6d2c5a70](https://github.com/shrimpram/debate-scripts/commit/fb6d2c5a70))
+  ([fb6d2c5a70](https://github.com/shreerammodi/debate-scripts/commit/fb6d2c5a70))
 
 ### Changed
 
 - Delete all headers in `SendDocNoHeaders`
-  ([d98b6df06d](https://github.com/shrimpram/debate-scripts/commit/d98b6df06d))
+  ([d98b6df06d](https://github.com/shreerammodi/debate-scripts/commit/d98b6df06d))
 
 ## [2.4.1] - 2025-11-14
 
 ### Fixed
 
 - Variable declaration in `Forreference`
-  ([d357aa808b](https://github.com/shrimpram/debate-scripts/commit/d357aa808b))
+  ([d357aa808b](https://github.com/shreerammodi/debate-scripts/commit/d357aa808b))
 
 ## [2.4.0] - 2025-11-14
 
 ### Added
 
 - Let users customize `ForReference`
-  ([9cb604e02b](https://github.com/shrimpram/debate-scripts/commit/9cb604e02b))
+  ([9cb604e02b](https://github.com/shreerammodi/debate-scripts/commit/9cb604e02b))
 
 ### Changed
 
 - Made helper functions public
-  ([6e6040e0ee](https://github.com/shrimpram/debate-scripts/commit/6e6040e0ee))
+  ([6e6040e0ee](https://github.com/shreerammodi/debate-scripts/commit/6e6040e0ee))
 
 ## [2.3.0] - 2025-10-26
 
 ### Added
 
 - `SendDocNoHeadings` function
-  ([6e5cc46d9e0e](https://github.com/shrimpram/debate-scripts/commit/6e5cc46d9e0e))
+  ([6e5cc46d9e0e](https://github.com/shreerammodi/debate-scripts/commit/6e5cc46d9e0e))
 
 ### Changed
 
@@ -144,6 +151,7 @@ and this project adheres to
 
 Initial Release
 
+[2.6.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.4.1...v2.5.0
 [2.4.1]: https://github.com/shreerammodi/debate-scripts/compare/v2.4.0...v2.4.1
 [2.4.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.3.1...v2.4.0
