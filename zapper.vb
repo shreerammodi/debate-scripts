@@ -149,6 +149,7 @@ Public Sub CreateZappedDoc()
     Dim baseFileName As String
     Dim counter As Integer
     Dim fileExist As Boolean
+    Dim docPath As String
 
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
@@ -161,9 +162,9 @@ Public Sub CreateZappedDoc()
     Call Zap
     Call CondenseCards
 
-    downloadsDirPath = GetDownloadsDir()
+    docPath = DocDir()
     baseFileName = "[R] " & originalDoc.Name
-    savePath = downloadsDirPath & baseFileName
+    savePath = docPath & baseFileName
 
     counter = 1
 
@@ -179,7 +180,7 @@ Public Sub CreateZappedDoc()
         baseName = Left(baseFileName, dotPos - 1)
         extension = Mid(baseFileName, dotPos)
 
-        savePath = downloadsDirPath & baseName & " (" & counter & ")" & extension
+        savePath = docPath & baseName & " (" & counter & ")" & extension
         counter = counter + 1
 
         fileExist = (Dir(savePath) <> "")

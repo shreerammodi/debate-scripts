@@ -27,7 +27,7 @@ Public Sub CreateSendDocNoHeaders()
 End Sub
 
 Private Sub SendDoc(styles as Variant)
-    Dim downloadsDirPath As String
+    Dim docPath As String
     Dim originalDoc As Document
     Dim savePath As String
     Dim sendDoc As Document
@@ -43,8 +43,8 @@ Private Sub SendDoc(styles as Variant)
     ' Process the document to remove analytics content
     Call DeleteStyles(styles)
 
-    downloadsDirPath = GetDownloadsDir()
-    savePath = downloadsDirPath & "[S] " & originalDoc.Name
+    docPath = DocDir()
+    savePath = docPath & "[S] " & originalDoc.Name
     ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
     sendDoc.Close
 
