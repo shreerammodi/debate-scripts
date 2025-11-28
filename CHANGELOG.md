@@ -158,6 +158,7 @@ and this project adheres to
 
 Initial Release
 
+[3.0.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.6.0...v3.0.0
 [2.6.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.5.0...v2.6.0
 [2.5.0]: https://github.com/shreerammodi/debate-scripts/compare/v2.4.1...v2.5.0
 [2.4.1]: https://github.com/shreerammodi/debate-scripts/compare/v2.4.0...v2.4.1
