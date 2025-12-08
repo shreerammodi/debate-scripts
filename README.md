@@ -38,7 +38,7 @@ each script from the files in this repository into the custom module.
 > [!IMPORTANT]
 >
 > You can generally pick and choose which scripts to add, with the exception
-> that the `helper.vb` script is always required.
+> that the `helper.bas` script is always required.
 
 ## Adding Keybindings
 
@@ -81,7 +81,7 @@ You can aestheticize the styles as you wish.
 ## Customization
 
 Some of the scripts permit user customization, you can find and customize these
-values in the `helpers.vb` file at the bottom.
+values in the `helpers.bas` file at the bottom.
 
 ## Scripts
 
