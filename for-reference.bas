@@ -39,6 +39,7 @@ Public Sub ForReferenceFast()
     Dim selRange As Range
     Dim procRange As Range
     Dim selEnd   As Long
+    Dim i As Long
     Dim sfr As Boolean
     sfr = ShrinkForReference()
     Dim shrinkByAmount As Integer

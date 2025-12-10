@@ -1,5 +1,6 @@
 Public Function GetDownloadsPath() As String
     Dim downloadsPath As String
+    Dim username As String
 
     #If Mac Then
         username = Environ("USER")
@@ -14,7 +15,8 @@ Public Function GetDownloadsPath() As String
 End Function
 
 Public Function GetDesktopPath() As String
-    Dim downloadsPath As String
+    Dim desktopPath As String
+    Dim username As String
 
     #If Mac Then
         username = Environ("USER")

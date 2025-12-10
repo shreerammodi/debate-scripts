@@ -147,8 +147,6 @@ Public Sub CreateZappedDoc()
     Dim savePath As String
     Dim zappedDoc As Document
     Dim baseFileName As String
-    Dim counter As Integer
-    Dim fileExist As Boolean
     Dim docPath As String
 
     Application.ScreenUpdating = False

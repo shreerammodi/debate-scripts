@@ -2,10 +2,8 @@ Public Sub MarkCard()
     Dim p As Paragraph
     Dim rngCard As Range
     Dim markerText As String
-    Dim markerLen As Long
 
     markerText = vbCrLf & "<<MARKED>>" & vbCrLf
-    markerLen = Len(markerText)
 
     ' Insert marker text before cursor
     Selection.InsertAfter markerText
