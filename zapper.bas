@@ -157,34 +157,16 @@ Public Sub CreateZappedDoc()
     ActiveDocument.Save
     Set originalDoc = ActiveDocument
 
-    Set zappedDoc = Documents.Add(ActiveDocument.FullName)
-
-    Call Zap
-    Call CondenseCards
-
     docPath = DocDir()
     baseFileName = "[R] " & originalDoc.Name
     savePath = docPath & baseFileName
 
-    counter = 1
+    Call CloseDocumentIfOpen(baseFileName)
 
-    fileExist = (Dir(savePath) <> "")
+    Set zappedDoc = Documents.Add(ActiveDocument.FullName)
 
-    Do While fileExist
-        Dim baseName As String
-        Dim extension As String
-        Dim dotPos As Integer
-
-        dotPos = InStrRev(baseFileName, ".")
-
-        baseName = Left(baseFileName, dotPos - 1)
-        extension = Mid(baseFileName, dotPos)
-
-        savePath = docPath & baseName & " (" & counter & ")" & extension
-        counter = counter + 1
-
-        fileExist = (Dir(savePath) <> "")
-    Loop
+    Call Zap
+    Call CondenseCards
 
     ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
 

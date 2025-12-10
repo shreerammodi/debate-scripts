@@ -34,6 +34,12 @@ Public Function StyleExists(styleName As String) As Boolean
     On Error GoTo 0
 End Function
 
+Public Sub CloseDocumentIfOpen(docName)
+    On Error Resume Next
+    Documents(docName).Close SaveChanges:=wdDoNotSaveChanges
+    On Error GoTo 0
+End Sub
+
 ' ==================================================
 ' SETTINGS - Edit these values to configure behavior
 ' ==================================================
@@ -49,7 +55,6 @@ End Function
 Public Function ShrinkBy() As Integer
     ShrinkBy = 1
 End Function
-
 
 ' Set to True if you want Send and Read docs to appear in your
 ' Downloads directory

@@ -31,6 +31,7 @@ Private Sub SendDoc(styles as Variant)
     Dim originalDoc As Document
     Dim savePath As String
     Dim sendDoc As Document
+    Dim baseFileName As String
 
     Application.ScreenUpdating = False
     Application.DisplayAlerts = False
@@ -38,13 +39,17 @@ Private Sub SendDoc(styles as Variant)
     ActiveDocument.Save
     set originalDoc = ActiveDocument
 
+    docPath = DocDir()
+    baseFileName = "[S] " & originalDoc.Name
+    savePath = docPath & baseFileName
+
+    Call CloseDocumentIfOpen(baseFileName)
+
     Set sendDoc = Documents.Add(ActiveDocument.FullName)
 
     ' Process the document to remove analytics content
     Call DeleteStyles(styles)
 
-    docPath = DocDir()
-    savePath = docPath & "[S] " & originalDoc.Name
     ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
     sendDoc.Close
 
