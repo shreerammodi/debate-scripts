@@ -64,7 +64,6 @@ End Sub
 
 ' Set to True to shrink text when running ForReference
 ' Set to False to keep text at original size
-
 Public Function ShrinkForReference() As Boolean
     ShrinkForReference = True
 End Function
@@ -109,7 +108,7 @@ Public Function DocDir As String
     ' <<Custom Path Here>> with the path of the folderyou want your Send and
     ' Read docs to appear in.
     '
-    ' Ensure that there is a trailing /
+    ' Ensure that there is a trailing slash
     If Not inDownloads And Not inDesktop Then
         DocDir =  "<<Custom Path Here>>"
     End If
