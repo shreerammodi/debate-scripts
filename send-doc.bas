@@ -63,7 +63,7 @@ Private Sub SendDoc(styles as Variant)
     ActiveDocument.Save
     set originalDoc = ActiveDocument
 
-    docPath = DocDir()
+    docPath = SendDocDir()
     baseFileName = "[S] " & originalDoc.Name
     savePath = docPath & baseFileName
 

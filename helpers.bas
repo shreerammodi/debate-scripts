@@ -113,3 +113,29 @@ Public Function DocDir As String
         DocDir =  "<<Custom Path Here>>"
     End If
 End Function
+
+Public Function ReadDocDir As String
+    ' Set a custom path for Read docs here (ensure trailing slash)
+    ' Leave empty to use DocDir as the default
+    Dim customPath As String
+    customPath = ""
+
+    If customPath = "" Then
+        ReadDocDir = DocDir()
+    Else
+        ReadDocDir = customPath
+    End If
+End Function
+
+Public Function SendDocDir As String
+    ' Set a custom path for Send docs here (ensure trailing slash)
+    ' Leave empty to use DocDir as the default
+    Dim customPath As String
+    customPath = ""
+
+    If customPath = "" Then
+        SendDocDir = DocDir()
+    Else
+        SendDocDir = customPath
+    End If
+End Function

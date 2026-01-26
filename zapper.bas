@@ -171,7 +171,7 @@ Public Sub CreateZappedDoc()
     ActiveDocument.Save
     Set originalDoc = ActiveDocument
 
-    docPath = DocDir()
+    docPath = ReadDocDir()
     baseFileName = "[R] " & originalDoc.Name
     savePath = docPath & baseFileName
 
