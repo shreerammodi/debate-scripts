@@ -1,4 +1,4 @@
-' Debate Scripts - Version 3.1.0
+' Mark Card - Debate Scripts - Version 3.1.1
 ' Copyright (C) 2025 Shreeram Modi
 '
 ' This program is free software: you can redistribute it and/or modify
