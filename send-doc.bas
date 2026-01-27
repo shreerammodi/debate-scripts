@@ -17,12 +17,20 @@
 Private Sub DeleteStyles(styles As Variant)
     Dim s As Variant
     Dim targetStyle As Style
+    Dim shouldDelete As Boolean
 
-    For Each s in styles
+    For Each s In styles
         If StyleExists(CStr(s)) Then
-            Set targetStyle = ActiveDocument.Styles(CStr(s))
-            styleName = targetStyle.NameLocal
-            If LCase(styleName) = LCase(CStr(s)) Then
+            Set targetStyle = ActiveDocument.styles(CStr(s))
+
+            shouldDelete = True
+
+            ' Don't delete any tags
+            If InStr(1, CStr(targetStyle), "Tag,", vbTextCompare) > 0 Then
+                shouldDelete = False
+            End If
+
+            If shouldDelete Then
                 With ActiveDocument.Content.Find
                     .ClearFormatting
                     .Replacement.ClearFormatting
