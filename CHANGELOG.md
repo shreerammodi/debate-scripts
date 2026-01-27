@@ -13,6 +13,12 @@ and this project adheres to
 - Enable setting custom send and read doc folders
   ([44ab77760b](https://github.com/shreerammodi/debate-scripts/commit/44ab77760b))
 
+### Fixed
+
+- Fix `SendDocNoHeaders` bug introduced by
+  [b440367992](https://github.com/shreerammodi/debate-scripts/commit/b440367992)
+  ([035951e8a4](https://github.com/shreerammodi/debate-scripts/commit/035951e8a4))
+
 ## [3.1.1] - 2026-01-26
 
 ### Fixed
