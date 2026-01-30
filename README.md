@@ -87,14 +87,20 @@ values in the `helpers.bas` file at the bottom.
 
 We provide the following scripts:
 
-- **Zapper**: this deletes all text which is not to be read in round, like
+- **Zapper**: deletes text which is not to be read in round, like
   non-highlighted card body. There are two callable functions:
   - `CreateZappedDoc`: this creates a new document which is a zapped version of
     the currently opened doc.
   - `ZapCard`: with your cursor in the tag of a card, calling this zaps only the
     current card in the current document.
-- `CreateSendDoc`: Given a speech document, creates a new send doc without
-  analytics and undertags.
+- **Send Doc**: creates a version of a speech document omitting parts you don't
+  wish to send to your opponent, like analytics and undertags. There are two
+  versions:
+  - `CreateSendDoc`: Deletes the following styles: `Analytic`, `Analytics`,
+    `Undertag`
+  - `CreateSendDocNoHeaders`: like `CreateSendDoc`, but also deletes headers.
+    This deletes all the following styles: `Analytic`, `Analytics`, `Undertag`,
+    `Block`, `Hat`, `Pocket`
 - **ForReference**: changes the highlight color of selected text to gray and
   converts it to a background fill, preventing it from being affected by
   standardize highlighting. Also optionally shrinks text size down 2 font sizes.
