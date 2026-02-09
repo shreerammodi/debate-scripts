@@ -104,9 +104,9 @@ We provide the following scripts:
 - **ForReference**: changes the highlight color of selected text to gray and
   converts it to a background fill, preventing it from being affected by
   standardize highlighting. Also optionally shrinks text size down 2 font sizes.
-  - `ForReferenceFast`: more performant version, which sometimes may remove
-    emphasis
-  - `ForReferenceSlow`: does not remove any styles, but less performant
+  - `ForReferenceFast`: more performant version, which sometimes may remove the
+    boxes around emphasis.
+  - `ForReferenceSlow`: does not remove any styles, but less performant.
 - **Card Marker**: Allows you to conveniently mark a card at your cursor and
   then compile all the marked cards in the document at the end for easy
   reference.
