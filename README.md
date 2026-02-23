@@ -13,7 +13,9 @@ macros.
 
 To install scripts in Word you need to add them as a Module in the Visual Basic
 section of the existing MS Word template that you want them to be available in.
-For Verbatim scripts, this is the `Debate.dotm` template.
+For Verbatim scripts, this means opening a Verbatimized document (document with
+the template applied) and then following the next steps depending on your
+operating system.
 
 #### Mac
 
