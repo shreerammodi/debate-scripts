@@ -1,4 +1,4 @@
-' Acronyms - Debate Scripts - Version 3.3.0
+' Acronyms - Debate Scripts - Version 4.0.0
 ' Copyright (C) 2025 Shreeram Modi
 '
 ' This program is free software: you can redistribute it and/or modify
