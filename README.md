@@ -89,34 +89,51 @@ values in the `helpers.bas` file at the bottom.
 
 We provide the following scripts:
 
-- **Zapper**: deletes text which is not to be read in round, like
-  non-highlighted card body. There are two callable functions:
-  - `CreateZappedDoc`: this creates a new document which is a zapped version of
-    the currently opened doc.
-  - `ZapCard`: with your cursor in the tag of a card, calling this zaps only the
-    current card in the current document.
-- **Send Doc**: creates a version of a speech document omitting parts you don't
-  wish to send to your opponent, like analytics and undertags. There are two
-  versions:
-  - `CreateSendDoc`: Deletes the following styles: `Analytic`, `Analytics`,
-    `Undertag`
-  - `CreateSendDocNoHeaders`: like `CreateSendDoc`, but also deletes headers.
-    This deletes all the following styles: `Analytic`, `Analytics`, `Undertag`,
-    `Block`, `Hat`, `Pocket`
-- **ForReference**: changes the highlight color of selected text to gray and
-  converts it to a background fill, preventing it from being affected by
-  standardize highlighting. Also optionally shrinks text size down 2 font sizes.
-  - `ForReferenceFast`: more performant version, which sometimes may remove the
-    boxes around emphasis.
-  - `ForReferenceSlow`: does not remove any styles, but less performant.
-- **Card Marker**: Allows you to conveniently mark a card at your cursor and
-  then compile all the marked cards in the document at the end for easy
-  reference.
-  - `MarkCard`: creates a "mark" at the cursor's position in the body of a card,
-    shading the rest of the card body red to indicate it wasn't read during the
-    speech.
-  - `CompileMarkedCards`: creates a section at the bottom of the doc with all
-    the cards marked in the current document.
+### Zapper
+
+Deletes text which is not to be read in round, like non-highlighted card body.
+
+| Function Name     | Description                                                                   |
+| ----------------- | ----------------------------------------------------------------------------- |
+| `CreateZappedDoc` | Creates a new document which is a zapped version of the currently opened doc. |
+| `ZapCard`         | Zaps the card your cursor is in the tag of.                                   |
+
+### Send Doc
+
+Creates a version of a speech document omitting parts you don't wish to send to
+your opponent, like analytics and undertags.
+
+| Function Name            | Description                                                                                                                                          |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CreateSendDoc`          | Deletes the following styles: `Analytic`, `Analytics`, `Undertag`                                                                                    |
+| `CreateSendDocNoHeaders` | Like `CreateSendDoc`, but also deletes headers. This deletes all the following styles: `Analytic`, `Analytics`, `Undertag`, `Block`, `Hat`, `Pocket` |
+
+### For Reference
+
+Changes the highlight color of selected text to gray and converts it to a
+background fill, preventing it from being affected by standardize highlighting.
+Also optionally shrinks text size down 2 font sizes.
+
+| Function Name      | Description                                                                    |
+| ------------------ | ------------------------------------------------------------------------------ |
+| `ForReferenceFast` | More performant version, which sometimes may remove the boxes around emphasis. |
+| `ForReferenceSlow` | Does not remove any styles, but less performant.                               |
+
+### Card Marker
+
+Allows you to conveniently mark a card at your cursor and then compile all the
+marked cards in the document at the end for easy reference.
+
+| Function Name        | Description                                                                                                                                          |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `MarkCard`           | Creates a "mark" at the cursor's position in the body of a card, shading the rest of the card body red to indicate it wasn't read during the speech. |
+| `CompileMarkedCards` | Creates a section at the bottom of the doc with all the cards marked in the current document.                                                        |
+
+### Word Count
+
+| Function Name | Description                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| `WordCount`   | Displays the word count of a document, measuring only the text that you'll read in a round. |
 
 [^1]:
     Some teams have their style for Analytic arguments named as `Analytics`. In
