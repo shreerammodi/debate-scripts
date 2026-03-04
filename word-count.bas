@@ -63,7 +63,7 @@ Public Sub WordCount()
     mins = totalSeconds \ 60
     secs = totalSeconds Mod 60
 
-    MsgBox wordCount & " words." & vbNewLine & vbNewLine & mins & " minutes " & secs & " seconds at " & wpm & " wpm."
+    MsgBox wordCount & " words." & vbNewLine & vbNewLine & mins & "m " & secs & "s at " & wpm & " wpm."
 
     Application.ScreenUpdating = True
     Application.DisplayAlerts = True
