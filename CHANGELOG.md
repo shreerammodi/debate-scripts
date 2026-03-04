@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0] - 2026-03-04
+
+### Added
+
+- Word count macro
+  ([d9b4bb587c](https://github.com/shreerammodi/debate-scripts/commit/d9b4bb587c))
+- Custom acronym definition spec
+  ([a110c9153d](https://github.com/shreerammodi/debate-scripts/commit/a110c9153d))
+
+### Changed
+
+- Made zap private
+  ([abb35dea7b](https://github.com/shreerammodi/debate-scripts/commit/abb35dea7b))
+
 ## [3.2.0] - 2026-01-26
 
 ### Added
@@ -189,6 +203,7 @@ and this project adheres to
 
 Initial Release
 
+[4.0.0]: https://github.com/shreerammodi/debate-scripts/compare/v3.2.0...v4.0.0
 [3.2.0]: https://github.com/shreerammodi/debate-scripts/compare/v3.1.1...v3.2.0
 [3.1.1]: https://github.com/shreerammodi/debate-scripts/compare/v3.1.0...v3.1.1
 [3.1.0]: https://github.com/shreerammodi/debate-scripts/compare/v3.0.0...v3.1.0
