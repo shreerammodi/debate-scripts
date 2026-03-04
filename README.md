@@ -7,7 +7,43 @@ Note that the work is not entirely my own and large amounts of inspiration and
 certain functions have been taken from other people's implementations of these
 macros.
 
-## Installation
+## Easy Installation
+
+The easiest way to install an up-to-date version of the macros is by installing
+the version of `Debate.dotm` that's shipped with each release.
+
+> [!WARNING]
+>
+> This will _delete_ all your settings, customizations, keybindings, and custom
+> styles. If you do not want that to happen, follow the steps outlined in the
+> [Manual Installation](#manual-installation) section.
+
+Go to the [Releases](https://github.com/shreerammodi/debate-scripts/releases)
+page. Download the `Debate.dotm` file attached to the latest release.
+
+Quit Word. Open your Word templates directory.
+
+On Mac, this is
+
+```text
+~/Library/Group Containers/UBF8T346G9.Office/User Content/Templates
+```
+
+On Windows, this is
+
+```text
+%appdata%\Microsoft\Templates\
+```
+
+Replace the version of Debate.dotm you have in that folder with the file you
+just downloaded.
+
+Launch Word. Set your [keybindings](#adding-keybindings).
+
+## Manual Installation
+
+If you wish to have granular control over your installation or want to preserve
+your other settings, use this approach.
 
 ### Module Setup
 
