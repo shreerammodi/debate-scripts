@@ -104,21 +104,27 @@ Public Function DocDir As String
         DocDir = desktopPath
     End If
 
-    ' Alternatively, set the above two functions as False and replace
-    ' <<Custom Path Here>> with the path of the folderyou want your Send and
-    ' Read docs to appear in.
+    ' Alternatively, set DocsInDownloads and DocsInDesktop to False and set
+    ' your custom path below. Ensure there is a trailing slash.
     '
-    ' Ensure that there is a trailing slash
+    ' ================================================
+    ' CUSTOM PATH: Replace <<Custom Path Here>> below
+    ' ================================================
     If Not inDownloads And Not inDesktop Then
-        DocDir =  "<<Custom Path Here>>"
+        DocDir = "<<Custom Path Here>>"
     End If
 End Function
 
 Public Function ReadDocDir As String
-    ' Set a custom path for Read docs here (ensure trailing slash)
-    ' Leave empty to use DocDir as the default
     Dim customPath As String
-    customPath = ""
+
+    ' Set a custom path for Read docs here (ensure trailing slash)
+    ' Leave empty to use DocDir as the default.
+    '
+    ' =============================================
+    ' CUSTOM PATH: Replace "" below with your path
+    ' =============================================
+    customPath = "" ' <-- PUT CUSTOM PATH HERE (or leave empty)
 
     If customPath = "" Then
         ReadDocDir = DocDir()
@@ -128,10 +134,15 @@ Public Function ReadDocDir As String
 End Function
 
 Public Function SendDocDir As String
+    Dim customPath As String
+
     ' Set a custom path for Send docs here (ensure trailing slash)
     ' Leave empty to use DocDir as the default
-    Dim customPath As String
-    customPath = ""
+    '
+    ' =============================================
+    ' CUSTOM PATH: Replace "" below with your path
+    ' =============================================
+    customPath = "" ' <-- PUT CUSTOM PATH HERE (or leave empty)
 
     If customPath = "" Then
         SendDocDir = DocDir()
