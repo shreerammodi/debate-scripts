@@ -39,7 +39,7 @@ Public Sub WordCount()
 
     styles = Array("Undertag", "Block", "Hat", "Pocket")
 
-    Call DeleteStyles(styles)
+    Call DeleteStyles(newDoc, styles)
 
     wordCount = newDoc.Range.ComputeStatistics(wdStatisticWords)
 
