@@ -64,6 +64,8 @@ Private Function LookupCustom(phrase As String) As String
         Case "intercontinental ballistic missiles" : LookupCustom = "1:1,1:6,2:1,3:1,3:last" ' icbms
         Case "miscalculation"                      : LookupCustom = "1:1-7"                  ' miscalc
         Case "cooperation"                         : LookupCustom = "1:1-4"                  ' coop
+        Case "regulations"                         : LookupCustom = "1:1-3,1:last"           ' regs
+        Case "technology"                          : LookupCustom = "1:1-4"                  ' tech
         Case Else                                  : LookupCustom = ""
     End Select
 End Function
