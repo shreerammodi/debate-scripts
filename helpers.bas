@@ -46,9 +46,9 @@ Public Function GetDesktopPath() As String
     GetDesktopPath = desktopPath
 End Function
 
-Public Function StyleExists(styleName As String) As Boolean
+Public Function StyleExists(targetDoc As Document, styleName As String) As Boolean
     On Error Resume Next
-    StyleExists = Not ActiveDocument.Styles(styleName) Is Nothing
+    StyleExists = Not targetDoc.Styles(styleName) Is Nothing
     On Error GoTo 0
 End Function
 

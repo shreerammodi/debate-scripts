@@ -14,15 +14,15 @@
 ' You should have received a copy of the GNU General Public License
 ' along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-Private Sub Zap()
-    ZapRange ActiveDocument.Content
+Private Sub Zap(targetDoc As Document)
+    ZapRange targetDoc, targetDoc.Content
 End Sub
 
-Private Sub CondenseCards()
-    CondenseCardsRange ActiveDocument.Content
+Private Sub CondenseCards(targetDoc As Document)
+    CondenseCardsRange targetDoc, targetDoc.Content
 End Sub
 
-Private Sub ZapRange(ByVal targetRange As Range)
+Private Sub ZapRange(targetDoc As Document, ByVal targetRange As Range)
     Dim styles As Variant
     Dim s As Variant
 
@@ -38,7 +38,7 @@ Private Sub ZapRange(ByVal targetRange As Range)
 
     ' First pass: turn on highlights for styles
     For Each s In styles
-        If StyleExists(CStr(s)) Then
+        If StyleExists(targetDoc, CStr(s)) Then
             With targetRange.Find
                 .ClearFormatting
                 .Style = s
@@ -78,7 +78,7 @@ Private Sub ZapRange(ByVal targetRange As Range)
 
     ' Third pass: Remove highlighting from styles
     For Each s In styles
-        If StyleExists(CStr(s)) Then
+        If StyleExists(targetDoc, CStr(s)) Then
             With targetRange.Find
                 .ClearFormatting
                 .Style = s
@@ -101,7 +101,7 @@ Private Sub ZapRange(ByVal targetRange As Range)
     Application.DisplayAlerts = True
 End Sub
 
-Private Sub CondenseCardsRange(ByVal targetRange As Range)
+Private Sub CondenseCardsRange(targetDoc As Document, ByVal targetRange As Range)
     Dim p As Paragraph
 
     Application.ScreenUpdating = False
@@ -133,7 +133,7 @@ Private Sub CondenseCardsRange(ByVal targetRange As Range)
                         .ClearFormatting
                         .Text = " "
                         .Highlight = False
-                        .Style = ActiveDocument.Styles("Normal")
+                        .Style = targetDoc.Styles("Normal")
                     End With
                     .Wrap = wdFindStop
                     .Format = True
@@ -177,12 +177,12 @@ Public Sub CreateZappedDoc()
 
     Call CloseDocumentIfOpen(baseFileName)
 
-    Set zappedDoc = Documents.Add(ActiveDocument.FullName)
+    Set zappedDoc = Documents.Add(originalDoc.FullName)
 
-    Call Zap
-    Call CondenseCards
+    Call Zap(zappedDoc)
+    Call CondenseCards(zappedDoc)
 
-    ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
+    zappedDoc.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
 
     Application.ScreenUpdating = True
     Application.DisplayAlerts = True
@@ -201,8 +201,8 @@ Public Sub ZapCard()
         Set cardRange = SelectHeadingAndContentRange(p)
 
         ' Apply zapping and condensing to just this card
-        ZapRange cardRange
-        CondenseCardsRange cardRange
+        ZapRange ActiveDocument, cardRange
+        CondenseCardsRange ActiveDocument, cardRange
     Else
         MsgBox "Please place your cursor in a Tag before running this macro.", vbExclamation
     End If

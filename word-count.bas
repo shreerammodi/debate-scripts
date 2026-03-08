@@ -33,15 +33,15 @@ Public Sub WordCount()
     ActiveDocument.Save
     Set originalDoc = ActiveDocument
 
-    Set newDoc = Documents.Add(ActiveDocument.FullName)
+    Set newDoc = Documents.Add(originalDoc.FullName)
 
-    Call Zap()
+    Call Zap(newDoc)
 
     styles = Array("Undertag", "Block", "Hat", "Pocket")
 
     Call DeleteStyles(styles)
 
-    wordCount = ActiveDocument.Range.ComputeStatistics(wdStatisticWords)
+    wordCount = newDoc.Range.ComputeStatistics(wdStatisticWords)
 
     totalSeconds = CLng((wordCount / wpm) * 60)
     mins = totalSeconds \ 60
@@ -52,5 +52,5 @@ Public Sub WordCount()
     Application.ScreenUpdating = True
     Application.DisplayAlerts = True
 
-    ActiveDocument.Close(wdDoNotSaveChanges)
+    newDoc.Close(wdDoNotSaveChanges)
 End Sub

@@ -14,27 +14,24 @@
 ' You should have received a copy of the GNU General Public License
 ' along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-Private Sub DeleteStyles(styles As Variant)
+Private Sub DeleteStyles(targetDoc As Document, styles As Variant)
     Dim s As Variant
-    Dim targetStyle As Style
     Dim shouldDelete As Boolean
 
     For Each s In styles
-        If StyleExists(CStr(s)) Then
-            Set targetStyle = ActiveDocument.styles(CStr(s))
-
+        If StyleExists(targetDoc, CStr(s)) Then
             shouldDelete = True
 
             ' Don't delete any tags
-            If InStr(1, CStr(targetStyle), "Tag,", vbTextCompare) > 0 Then
+            If InStr(1, CStr(s), "Tag", vbTextCompare) > 0 Then
                 shouldDelete = False
             End If
 
             If shouldDelete Then
-                With ActiveDocument.Content.Find
+                With targetDoc.Content.Find
                     .ClearFormatting
                     .Replacement.ClearFormatting
-                    .Style = targetStyle
+                    .Style = CStr(s)
                     .Text = ""
                     .Replacement.Text = ""
                     .Forward = True
@@ -77,12 +74,12 @@ Private Sub SendDoc(styles as Variant)
 
     Call CloseDocumentIfOpen(baseFileName)
 
-    Set sendDoc = Documents.Add(ActiveDocument.FullName)
+    Set sendDoc = Documents.Add(originalDoc.FullName)
 
     ' Process the document to remove analytics content
-    Call DeleteStyles(styles)
+    Call DeleteStyles(sendDoc, styles)
 
-    ActiveDocument.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
+    sendDoc.SaveAs2 Filename:=savePath, FileFormat:=wdFormatDocumentDefault
     sendDoc.Close
 
     Application.ScreenUpdating = True
