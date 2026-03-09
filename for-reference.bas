@@ -1,4 +1,4 @@
-' For Reference - Debate Scripts - Version 4.0.0
+' For Reference - Debate Scripts - Version 4.0.2
 ' Copyright (C) 2025 Shreeram Modi
 '
 ' This program is free software: you can redistribute it and/or modify
