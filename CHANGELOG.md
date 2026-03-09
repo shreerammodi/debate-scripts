@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.2] - 2026-03-09
+
+### Fixed
+
+- Prevented Word from crashing when running ZapCard
+  ([0419f4f29f](https://github.com/shreerammodi/debate-scripts/commit/0419f4f29f))
+
 ## [4.0.1] - 2026-03-08
 
 ### Added
@@ -216,6 +223,7 @@ and this project adheres to
 
 Initial Release
 
+[4.0.2]: https://github.com/shreerammodi/debate-scripts/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/shreerammodi/debate-scripts/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/shreerammodi/debate-scripts/compare/v3.2.0...v4.0.0
 [3.2.0]: https://github.com/shreerammodi/debate-scripts/compare/v3.1.1...v3.2.0
