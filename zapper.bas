@@ -191,19 +191,77 @@ End Sub
 Public Sub ZapCard()
     Dim p As Paragraph
     Dim cardRange As Range
+    Dim CondenseRange As Range
+    Dim tagStart As Long
 
     ' Get the paragraph containing the cursor
     Set p = Selection.Paragraphs(1)
 
     ' Check if cursor is in a heading 4 (Tag)
-    If p.OutlineLevel = wdOutlineLevel4 Then
-        ' Get the range for this card
-        Set cardRange = SelectHeadingAndContentRange(p)
-
-        ' Apply zapping and condensing to just this card
-        ZapRange ActiveDocument, cardRange
-        CondenseCardsRange ActiveDocument, cardRange
-    Else
+    If p.OutlineLevel <> wdOutlineLevel4 Then
         MsgBox "Please place your cursor in a Tag before running this macro.", vbExclamation
+        Exit Sub
     End If
+
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+
+    ' Get the range for this card and save the tag position
+    Set cardRange = SelectHeadingAndContentRange(p)
+    tagStart = cardRange.Start
+
+    ' Zap: delete non-style content
+    ZapRange ActiveDocument, cardRange
+    Set cardRange = Nothing
+    Set p = Nothing
+
+    ' Re-derive everything from the saved position.
+    ' The original Range and Paragraph objects are stale after ZapRange's
+    ' bulk Find/Replace - reusing them crashes Word for Mac
+    Set p = ActiveDocument.Range(tagStart, tagStart).Paragraphs(1)
+    Set CondenseRange = SelectCardTextRange(p)
+
+    ' Drop beginning whitespace if present
+    If CondenseRange.Characters.First.Text = Chr(13) Then
+        CondenseRange.Characters(1).Delete
+        CondenseRange.MoveStart wdParagraph, +1
+    End If
+
+    ' Drop trailing paragraph mark if present
+    If CondenseRange.Characters.Last.Text = Chr(13) Then
+        CondenseRange.MoveEnd wdCharacter, -1
+    End If
+
+    ' Condense: merge paragraph marks into spaces
+    If CondenseRange.Paragraphs.Count > 1 Then
+        With CondenseRange.Find
+            .ClearFormatting
+            .Text = "^p"
+            With .Replacement
+                .ClearFormatting
+                .Text = " "
+                .Highlight = False
+                .Style = ActiveDocument.Styles("Normal")
+            End With
+            .Wrap = wdFindStop
+            .Format = True
+            .Execute Replace:=wdReplaceAll
+        End With
+    End If
+
+    ' Remove duplicate spaces in the card area
+    Set CondenseRange = SelectHeadingAndContentRange( _
+        ActiveDocument.Range(tagStart, tagStart).Paragraphs(1))
+    With CondenseRange.Find
+        .ClearFormatting
+        .Text = " {2,}"
+        .Replacement.Text = " "
+        .Forward = True
+        .Wrap = wdFindStop
+        .MatchWildcards = True
+        .Execute Replace:=wdReplaceAll
+    End With
+
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
 End Sub
