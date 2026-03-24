@@ -48,25 +48,27 @@ Private Function LookupCustom(phrase As String) As String
     Loop
 
     Select Case normalized
-        Case "nuclear weapons"                     : LookupCustom = "1:1-3,2:last"           ' nucs
-        Case "nuclear warheads"                    : LookupCustom = "1:1-3,2:last"           ' nucs
-        Case "economy"                             : LookupCustom = "1:1-4"                  ' econ
-        Case "communications"                      : LookupCustom = "1:1-5"                  ' comms
-        Case "weapon of mass destruction"          : LookupCustom = "1:1,3  :1,4:1"          ' wmd
-        Case "existential"                         : LookupCustom = "1:2"                    ' x
-        Case "extinction"                          : LookupCustom = "1:2"                    ' x
-        Case "utilitarianism"                      : LookupCustom = "1:1-4"                  ' util
-        Case "evidence"                            : LookupCustom = "1:1-2"                  ' ev
-        Case "become"                              : LookupCustom = "1:1-2"                  ' be
-        Case "submarines"                          : LookupCustom = "1:1-3,1:last"           ' subs
-        Case "technology"                          : LookupCustom = "1:1-4"                  ' tech
-        Case "intercontinental ballistic missile"  : LookupCustom = "1:1,1:6,2:1,3:1"        ' icbm
-        Case "intercontinental ballistic missiles" : LookupCustom = "1:1,1:6,2:1,3:1,3:last" ' icbms
-        Case "miscalculation"                      : LookupCustom = "1:1-7"                  ' miscalc
-        Case "cooperation"                         : LookupCustom = "1:1-4"                  ' coop
-        Case "regulations"                         : LookupCustom = "1:1-3,1:last"           ' regs
-        Case "technology"                          : LookupCustom = "1:1-4"                  ' tech
-        Case Else                                  : LookupCustom = ""
+        Case "nuclear weapons"                              : LookupCustom = "1:1-3,2:last"             ' nucs
+        Case "nuclear warheads"                             : LookupCustom = "1:1-3,2:last"             ' nucs
+        Case "economy"                                      : LookupCustom = "1:1-4"                    ' econ
+        Case "communications"                               : LookupCustom = "1:1-5"                    ' comms
+        Case "weapon of mass destruction"                   : LookupCustom = "1:1,3:1,4:1"              ' wmd
+        Case "existential"                                  : LookupCustom = "1:2"                      ' x
+        Case "extinction"                                   : LookupCustom = "1:2"                      ' x
+        Case "utilitarianism"                               : LookupCustom = "1:1-4"                    ' util
+        Case "evidence"                                     : LookupCustom = "1:1-2"                    ' ev
+        Case "become"                                       : LookupCustom = "1:1-2"                    ' be
+        Case "submarines"                                   : LookupCustom = "1:1-3,1 : last"           ' subs
+        Case "technology"                                   : LookupCustom = "1:1-4"                    ' tech
+        Case "intercontinental ballistic missile"           : LookupCustom = "1:1,1:6,2:1,3:1"          ' icbm
+        Case "intercontinental ballistic missiles"          : LookupCustom = "1:1,1:6,2:1,3:1,3 : last" ' icbms
+        Case "miscalculation"                               : LookupCustom = "1:1-7"                    ' miscalc
+        Case "cooperation"                                  : LookupCustom = "1:1-4"                    ' coop
+        Case "regulations"                                  : LookupCustom = "1:1-3,1:last"             ' regs
+        Case "technology"                                   : LookupCustom = "1:1-4"                    ' tech
+        Case "treaty on the prohibition of nuclear weapons" : LookupCustom = "1:1,4:1,6:1,7:1"          ' tpnw
+        Case "tactical nuclear weapons"                     : LookupCustom = "1:1,2:1,3:1,3:last"       ' tnws
+        Case Else                                           : LookupCustom = ""
     End Select
 End Function
 
