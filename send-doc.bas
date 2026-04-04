@@ -22,8 +22,8 @@ Private Sub DeleteStyles(targetDoc As Document, styles As Variant)
         If StyleExists(targetDoc, CStr(s)) Then
             shouldDelete = True
 
-            ' Don't delete any tags
-            If InStr(1, CStr(s), "Tag", vbTextCompare) > 0 Then
+            ' Don't delete the Tag style
+            If StrComp(CStr(s), "Tag", vbTextCompare) = 0 Then
                 shouldDelete = False
             End If
 
